@@ -1,9 +1,12 @@
+var firebase = require('firebase');
+var app = firebase.initializeApp({'https://timercode.firebaseio.com/'});
+//var tester = Firebase;
 // Variables which players will be manipulating to affect their champion's stats
 var aether = 1;
 var material = 1;
 var chaos = 1;
 var order = 1;
-
+//champion
 var elementalist = {
   hitpoints: 380,
   currentHitpoints: 380,
@@ -18,6 +21,7 @@ var elementalist = {
   special: function(enemyHealth,enemySpecDef){
     console.log("thing");
   },
+ 
   changeStats: function(aether,material,chaos,order){
     this.physicalAttack=Math.floor(4+aether+chaos);
     this.physicalDefense=Math.floor(3+material+chaos);
@@ -25,6 +29,14 @@ var elementalist = {
     this.specialDefense=Math.floor((10+material+aether)/order);
     this.dexterity=Math.floor((3*chaos)+aether);
   },
+  // firebase after the object is in the local server
+ app.set ({
+    physicalAttack : this.physicalDefense=Math.floor(3+material+chaos),
+    physicalDefense : this.physicalDefense=Math.floor(3+material+chaos),
+    dexterity: this.dexterity=Math.floor((3*chaos)+aether);
+  
+  });
+
   printStats: function(){
     console.log("---------------");
     console.log("PhysicalAttack: "+this.physicalAttack);
