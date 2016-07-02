@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>Hotfix Engine</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- bootstrap-switch -->
+    <link href="public/assets/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="public/assets/css/styles.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+    <!-- bootstrap-switch -->
+    <script src="public/assets/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <!-- bootstrap-switch: init -->
+    <script src="public/assets/bootstrap-switch/js/bootstrap-switch-init.js"></script>
+
+    <!-- Custom JS -->
+    <script src="public/assets/js/game.js"></script>
+
+    <!-- *** Angular 2 Setup *** -->
+    <!-- 1. Load libraries -->
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('app').catch(function(err){
+        console.error(err); });
+    </script>
+
+  </head>
+
+  <body>
+    <my-app>Loading...</my-app>
+  </body>
+  
+</html>
