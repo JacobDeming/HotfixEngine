@@ -20,12 +20,15 @@ var SpritesComponent = (function () {
             character.render();
         }
         function sprite(options) {
-            var that = {}, frameIndex = 0, tickCount = 0, ticksPerFrame = options.ticksPerFrame || 0, numberOfFrames = options.numberOfFrames || 1;
-            that.context = options.context;
-            that.width = options.width;
-            that.height = options.height;
-            that.image = options.image;
-            that.update = function () {
+            var spriteObj = {
+                context: options.context,
+                width: options.width,
+                height: options.height,
+                image: options.image,
+                update: function () { },
+                render: function () { }
+            }, frameIndex = 0, tickCount = 0, ticksPerFrame = options.ticksPerFrame || 0, numberOfFrames = options.numberOfFrames || 1;
+            spriteObj.update = function () {
                 tickCount += 1;
                 if (tickCount > ticksPerFrame) {
                     tickCount = 0;
@@ -39,13 +42,13 @@ var SpritesComponent = (function () {
                     }
                 }
             };
-            that.render = function () {
+            spriteObj.render = function () {
                 // Clear the canvas
-                that.context.clearRect(0, 0, that.width, that.height);
+                spriteObj.context.clearRect(0, 0, spriteObj.width, spriteObj.height);
                 // Draw the animation
-                that.context.drawImage(that.image, frameIndex * that.width / numberOfFrames, 0, that.width / numberOfFrames, that.height, 0, 0, that.width / numberOfFrames, that.height);
+                spriteObj.context.drawImage(spriteObj.image, frameIndex * spriteObj.width / numberOfFrames, 0, spriteObj.width / numberOfFrames, spriteObj.height, 0, 0, spriteObj.width / numberOfFrames, spriteObj.height);
             };
-            return that;
+            return spriteObj;
         }
         // Get canvas
         canvas = document.getElementById("characterAnimation");
