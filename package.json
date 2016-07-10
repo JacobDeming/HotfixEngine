@@ -1,13 +1,14 @@
 {
   "name": "hotfix-engine",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
-    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
-    "lite": "lite-server",
+    "start": "node ./bin/www",
     "postinstall": "typings install",
-    "tsc": "tsc",
-    "tsc:w": "tsc -w",
-    "typings": "typings"
+    "typings": "typings",
+    "vendor": "gulp vendor",
+    "gulp": "gulp clean && gulp",
+    "build:production": "gulp clean && gulp build && node systemjs.builder.js"
   },
   "license": "ISC",
   "dependencies": {
@@ -22,17 +23,25 @@
     "@angular/router-deprecated": "2.0.0-rc.2",
     "@angular/upgrade": "2.0.0-rc.3",
     "angular2-in-memory-web-api": "0.0.12",
-    "bootstrap": "^3.3.6",
-    "core-js": "^2.4.0",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "es6-shim": "^0.35.0",
+    "express": "~4.13.1",
+    "hbs": "~3.1.0",
+    "morgan": "~1.6.1",
+    "ng2-bootstrap": "^1.0.17",
     "reflect-metadata": "^0.1.3",
     "rxjs": "5.0.0-beta.6",
+    "serve-favicon": "~2.3.0",
     "systemjs": "0.19.27",
+    "typings": "^0.8.1",
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
-    "concurrently": "^2.0.0",
-    "lite-server": "^2.2.0",
-    "typescript": "^1.8.10",
-    "typings": "^1.0.4"
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-typescript": "^2.13.6",
+    "systemjs-builder": "^0.15.19"
   }
 }
