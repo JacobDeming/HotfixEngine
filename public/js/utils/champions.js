@@ -21,287 +21,289 @@ var chaos = 1;
 var order = 1;
 
 //All of the champions that a player could be randomly assigned
-var elementalist = {
-    class: "Elementalist",
-    hitpoints: 50,
-    currentHitpoints: 50,
-    physicalAttack: 4,
-    physicalDefense: 3,
-    specialAttack: 12,
-    specialDefense: 10,
-    dexterity: 3,
-    action: "",
-    strike: function(enemy) {
-        if (_.random(1, 100) > enemy.dexterity) {
-            if (enemy.action == "defend") {
-                console.log(this.class + " uses their SPECIAL ATTACK for " + (this.physicalAttack - (enemy.physicalDefense * 2)) + " damage!")
-                enemy.currentHitpoints -= (this.physicalAttack - enemy.physicalDefense * 2);
+var champions = {
+    elementalist: {
+        class: "Elementalist",
+        hitpoints: 50,
+        currentHitpoints: 50,
+        physicalAttack: 4,
+        physicalDefense: 3,
+        specialAttack: 12,
+        specialDefense: 10,
+        dexterity: 3,
+        action: "",
+        strike: function(enemy) {
+            if (_.random(1, 100) > enemy.dexterity) {
+                if (enemy.action == "defend") {
+                    console.log(this.class + " uses their SPECIAL ATTACK for " + (this.physicalAttack - (enemy.physicalDefense * 2)) + " damage!")
+                    enemy.currentHitpoints -= (this.physicalAttack - enemy.physicalDefense * 2);
+                } else {
+                    console.log(this.class + " uses their SPECIAL ATTACK for " + (this.physicalAttack - (enemy.physicalDefense)) + " damage!")
+                    enemy.currentHitpoints -= (this.physicalAttack - enemy.physicalDefense);
+                }
             } else {
-                console.log(this.class + " uses their SPECIAL ATTACK for " + (this.physicalAttack - (enemy.physicalDefense)) + " damage!")
-                enemy.currentHitpoints -= (this.physicalAttack - enemy.physicalDefense);
+                console.log(enemy.class + " DODGED!");
             }
-        } else {
-            console.log(enemy.class + " DODGED!");
+        },
+        special: function(enemy) {
+            if (_.random(1, 100) > enemy.dexterity) {
+                if (enemy.action == "defend") {
+                    console.log(this.class + " uses their SPECIAL ATTACK for " + (this.specialAttack - (enemy.specialDefense * 2)) + " damage!")
+                    enemy.currentHitpoints -= (this.specialAttack - enemy.specialDefense * 2);
+                } else {
+                    console.log(this.class + " uses their SPECIAL ATTACK for " + (this.specialAttack - (enemy.specialDefense)) + " damage!")
+                    enemy.currentHitpoints -= (this.specialAttack - enemy.specialDefense);
+                }
+            } else {
+                console.log(enemy.class + " DODGED!");
+            }
+        },
+        changeStats: function(aether, material, chaos, order) {
+            this.physicalAttack = Math.floor(4 + aether + material);
+            this.physicalDefense = Math.floor(3 + order);
+            this.specialAttack = Math.floor(((12 + aether) * chaos) / order);
+            this.specialDefense = Math.floor(10 + material + order);
+            this.dexterity = Math.floor(3 * chaos);
+            firebase.database().ref('/Players/' + this.class).update({
+                physicalAttack: this.physicalDefense,
+                physicalDefense: this.physicalDefense,
+                dexterity: this.dexterity,
+                specialDefense: this.specialDefense,
+                specialAttack: this.specialAttack,
+                currentHitpoints: this.currentHitpoints
+            })
+        },
+        printStats: function() {
+            console.log("---ELEMENTALIST---");
+            console.log("Current HP: " + this.currentHitpoints);
+            console.log("PhysicalAttack: " + this.physicalAttack);
+            console.log("physicalDefense: " + this.physicalDefense);
+            console.log("specialAttack: " + this.specialAttack);
+            console.log("specialDefense: " + this.specialDefense);
+            console.log("Dexterity: " + this.dexterity);
+            console.log("Action: " + this.action);
+            console.log("");
+        },
+        AISelectAction: function(enemy) {
+            this.action = "";
+            var rng = (_.random(1, 100));
+            if ((this.physicalAttack - enemy.physicalDefense) > (this.specialAttack - enemy.specialDefense)) {
+                if (rng - (this.physicalAttack - enemy.physicalDefense) <= 0) {
+                    rng = 1;
+                } else {
+                    rng -= (this.physicalAttack - enemy.physicalDefense);
+                }
+            }
+            if ((this.physicalAttack - enemy.physicalDefense) < (this.specialAttack - enemy.specialDefense)) {
+                if (rng + (this.specialAttack - enemy.specialDefense) >= 100) {
+                    rng = 100;
+                } else {
+                    rng += (this.specialAttack - enemy.specialDefense);
+                }
+            }
+            if (this.currentHitpoints - (enemy.physicalAttack - this.physicalDefense) <= 0 || this.currentHitpoints - (enemy.specialAttack - this.specialDefense) <= 0) {
+                rng = (_.random(20, 80));
+            }
+            console.log(this.class + "'s random number is " + rng);
+            if (rng <= 33) {
+                this.action = "strike";
+            }
+            if (rng >= 66) {
+                this.action = "special";
+            }
+            if (rng < 66 && rng > 33) {
+                this.action = "defend";
+            }
         }
     },
-    special: function(enemy) {
-        if (_.random(1, 100) > enemy.dexterity) {
-            if (enemy.action == "defend") {
-                console.log(this.class + " uses their SPECIAL ATTACK for " + (this.specialAttack - (enemy.specialDefense * 2)) + " damage!")
-                enemy.currentHitpoints -= (this.specialAttack - enemy.specialDefense * 2);
-            } else {
-                console.log(this.class + " uses their SPECIAL ATTACK for " + (this.specialAttack - (enemy.specialDefense)) + " damage!")
-                enemy.currentHitpoints -= (this.specialAttack - enemy.specialDefense);
-            }
-        } else {
-            console.log(enemy.class + " DODGED!");
-        }
-    },
-    changeStats: function(aether, material, chaos, order) {
-        this.physicalAttack = Math.floor(4 + aether + material);
-        this.physicalDefense = Math.floor(3 + order);
-        this.specialAttack = Math.floor(((12 + aether) * chaos) / order);
-        this.specialDefense = Math.floor(10 + material + order);
-        this.dexterity = Math.floor(3 * chaos);
-        firebase.database().ref('/Players/' + this.class).update({
-            physicalAttack: this.physicalDefense,
-            physicalDefense: this.physicalDefense,
-            dexterity: this.dexterity,
-            specialDefense: this.specialDefense,
-            specialAttack: this.specialAttack,
-            currentHitpoints: this.currentHitpoints
-        })
-    },
-    printStats: function() {
-        console.log("---ELEMENTALIST---");
-        console.log("Current HP: " + this.currentHitpoints);
-        console.log("PhysicalAttack: " + this.physicalAttack);
-        console.log("physicalDefense: " + this.physicalDefense);
-        console.log("specialAttack: " + this.specialAttack);
-        console.log("specialDefense: " + this.specialDefense);
-        console.log("Dexterity: " + this.dexterity);
-        console.log("Action: " + this.action);
-        console.log("");
-    },
-    AISelectAction: function(enemy) {
-        this.action = "";
-        var rng = (_.random(1, 100));
-        if ((this.physicalAttack - enemy.physicalDefense) > (this.specialAttack - enemy.specialDefense)) {
-            if (rng - (this.physicalAttack - enemy.physicalDefense) <= 0) {
-                rng = 1;
-            } else {
-                rng -= (this.physicalAttack - enemy.physicalDefense);
-            }
-        }
-        if ((this.physicalAttack - enemy.physicalDefense) < (this.specialAttack - enemy.specialDefense)) {
-            if (rng + (this.specialAttack - enemy.specialDefense) >= 100) {
-                rng = 100;
-            } else {
-                rng += (this.specialAttack - enemy.specialDefense);
-            }
-        }
-        if (this.currentHitpoints - (enemy.physicalAttack - this.physicalDefense) <= 0 || this.currentHitpoints - (enemy.specialAttack - this.specialDefense) <= 0) {
-            rng = (_.random(20, 80));
-        }
-        console.log(this.class + "'s random number is " + rng);
-        if (rng <= 33) {
-            this.action = "strike";
-        }
-        if (rng >= 66) {
-            this.action = "special";
-        }
-        if (rng < 66 && rng > 33) {
-            this.action = "defend";
-        }
-    }
-}
 
-var highwayman = {
-    class: "Highwayman",
-    hitpoints: 80,
-    currentHitpoints: 80,
-    physicalAttack: 10,
-    physicalDefense: 5,
-    specialAttack: 2,
-    specialDefense: 3,
-    dexterity: 10,
-    action: "",
-    strike: function(enemy) {
-        if (_.random(1, 100) > enemy.dexterity) {
-            if (enemy.action == "defend") {
-                console.log(this.class + " STRIKES for " + (this.physicalAttack - (enemy.physicalDefense * 2)) + " damage!")
-                enemy.currentHitpoints -= (this.physicalAttack - enemy.physicalDefense * 2);
+    highwayman: {
+        class: "Highwayman",
+        hitpoints: 80,
+        currentHitpoints: 80,
+        physicalAttack: 10,
+        physicalDefense: 5,
+        specialAttack: 2,
+        specialDefense: 3,
+        dexterity: 10,
+        action: "",
+        strike: function(enemy) {
+            if (_.random(1, 100) > enemy.dexterity) {
+                if (enemy.action == "defend") {
+                    console.log(this.class + " STRIKES for " + (this.physicalAttack - (enemy.physicalDefense * 2)) + " damage!")
+                    enemy.currentHitpoints -= (this.physicalAttack - enemy.physicalDefense * 2);
+                } else {
+                    console.log(this.class + " STRIKES for " + (this.physicalAttack - (enemy.physicalDefense)) + " damage!")
+                    enemy.currentHitpoints -= (this.physicalAttack - enemy.physicalDefense);
+                }
             } else {
-                console.log(this.class + " STRIKES for " + (this.physicalAttack - (enemy.physicalDefense)) + " damage!")
-                enemy.currentHitpoints -= (this.physicalAttack - enemy.physicalDefense);
+                console.log(enemy.class + " DODGED!");
             }
-        } else {
-            console.log(enemy.class + " DODGED!");
+        },
+        special: function(enemy) {
+            if (_.random(1, 100) > enemy.dexterity) {
+                if (enemy.action == "defend") {
+                    console.log(this.class + " uses their SPECIAL ATTACK for " + (this.specialAttack - (enemy.specialDefense * 2)) + " damage!")
+                    enemy.currentHitpoints -= (this.specialAttack - enemy.specialDefense * 2);
+                } else {
+                    console.log(this.class + " uses their SPECIAL ATTACK for " + (this.specialAttack - (enemy.specialDefense)) + " damage!")
+                    enemy.currentHitpoints -= (this.specialAttack - enemy.specialDefense);
+                }
+            } else {
+                console.log(enemy.class + " DODGED!");
+            }
+        },
+        changeStats: function(aether, material, chaos, order) {
+            this.physicalAttack = Math.floor((chaos * material) + 10);
+            this.physicalDefense = Math.floor(5 + material);
+            this.specialAttack = Math.floor(2 + (2 * order));
+            this.specialDefense = Math.floor(3 + chaos + aether);
+            this.dexterity = Math.floor(((10 * aether) + order) / material);
+            firebase.database().ref('/Players/' + this.class).update({
+                physicalAttack: this.physicalDefense,
+                physicalDefense: this.physicalDefense,
+                dexterity: this.dexterity,
+                specialDefense: this.specialDefense,
+                specialAttack: this.specialAttack,
+                currentHitpoints: this.currentHitpoints
+            })
+        },
+        printStats: function() {
+            console.log("---HIGHWAYMAN---");
+            console.log("Current HP: " + this.currentHitpoints);
+            console.log("PhysicalAttack: " + this.physicalAttack);
+            console.log("physicalDefense: " + this.physicalDefense);
+            console.log("specialAttack: " + this.specialAttack);
+            console.log("specialDefense: " + this.specialDefense);
+            console.log("Dexterity: " + this.dexterity);
+            console.log("Action: " + this.action);
+            console.log("");
+        },
+        AISelectAction: function(enemy) {
+            this.action = "";
+            var rng = (_.random(1, 100))
+            if ((this.physicalAttack - enemy.physicalDefense) > (this.specialAttack - enemy.specialDefense)) {
+                if (rng - (this.physicalAttack - enemy.physicalDefense) <= 0) {
+                    rng = 1;
+                } else {
+                    rng -= (this.physicalAttack - enemy.physicalDefense);
+                }
+            }
+            if ((this.physicalAttack - enemy.physicalDefense) < (this.specialAttack - enemy.specialDefense)) {
+                if (rng + (this.specialAttack - enemy.specialDefense) >= 100) {
+                    rng = 100;
+                } else {
+                    rng += (this.specialAttack - enemy.specialDefense);
+                }
+            }
+            if (this.currentHitpoints - (enemy.physicalAttack - this.physicalDefense) <= 0 || this.currentHitpoints - (enemy.specialAttack - this.specialDefense) <= 0) {
+                rng = (_.random(20, 80));
+            }
+            console.log(this.class + "'s random number is " + rng);
+            if (rng <= 33) {
+                this.action = "strike";
+            }
+            if (rng >= 66) {
+                this.action = "special";
+            }
+            if (rng < 66 && rng > 33) {
+                this.action = "defend";
+            }
         }
     },
-    special: function(enemy) {
-        if (_.random(1, 100) > enemy.dexterity) {
-            if (enemy.action == "defend") {
-                console.log(this.class + " uses their SPECIAL ATTACK for " + (this.specialAttack - (enemy.specialDefense * 2)) + " damage!")
-                enemy.currentHitpoints -= (this.specialAttack - enemy.specialDefense * 2);
-            } else {
-                console.log(this.class + " uses their SPECIAL ATTACK for " + (this.specialAttack - (enemy.specialDefense)) + " damage!")
-                enemy.currentHitpoints -= (this.specialAttack - enemy.specialDefense);
-            }
-        } else {
-            console.log(enemy.class + " DODGED!");
-        }
-    },
-    changeStats: function(aether, material, chaos, order) {
-        this.physicalAttack = Math.floor((chaos * material) + 10);
-        this.physicalDefense = Math.floor(5 + material);
-        this.specialAttack = Math.floor(2 + (2 * order));
-        this.specialDefense = Math.floor(3 + chaos + aether);
-        this.dexterity = Math.floor(((10 * aether) + order) / material);
-        firebase.database().ref('/Players/' + this.class).update({
-            physicalAttack: this.physicalDefense,
-            physicalDefense: this.physicalDefense,
-            dexterity: this.dexterity,
-            specialDefense: this.specialDefense,
-            specialAttack: this.specialAttack,
-            currentHitpoints: this.currentHitpoints
-        })
-    },
-    printStats: function() {
-        console.log("---HIGHWAYMAN---");
-        console.log("Current HP: " + this.currentHitpoints);
-        console.log("PhysicalAttack: " + this.physicalAttack);
-        console.log("physicalDefense: " + this.physicalDefense);
-        console.log("specialAttack: " + this.specialAttack);
-        console.log("specialDefense: " + this.specialDefense);
-        console.log("Dexterity: " + this.dexterity);
-        console.log("Action: " + this.action);
-        console.log("");
-    },
-    AISelectAction: function(enemy) {
-        this.action = "";
-        var rng = (_.random(1, 100))
-        if ((this.physicalAttack - enemy.physicalDefense) > (this.specialAttack - enemy.specialDefense)) {
-            if (rng - (this.physicalAttack - enemy.physicalDefense) <= 0) {
-                rng = 1;
-            } else {
-                rng -= (this.physicalAttack - enemy.physicalDefense);
-            }
-        }
-        if ((this.physicalAttack - enemy.physicalDefense) < (this.specialAttack - enemy.specialDefense)) {
-            if (rng + (this.specialAttack - enemy.specialDefense) >= 100) {
-                rng = 100;
-            } else {
-                rng += (this.specialAttack - enemy.specialDefense);
-            }
-        }
-        if (this.currentHitpoints - (enemy.physicalAttack - this.physicalDefense) <= 0 || this.currentHitpoints - (enemy.specialAttack - this.specialDefense) <= 0) {
-            rng = (_.random(20, 80));
-        }
-        console.log(this.class + "'s random number is " + rng);
-        if (rng <= 33) {
-            this.action = "strike";
-        }
-        if (rng >= 66) {
-            this.action = "special";
-        }
-        if (rng < 60 && rng > 33) {
-            this.action = "defend";
-        }
-    }
-}
 
-var paragon = {
-    class: "Paragon",
-    hitpoints: 120,
-    currentHitpoints: 120,
-    physicalAttack: 10,
-    physicalDefense: 8,
-    specialAttack: 6,
-    specialDefense: 7,
-    dexterity: 10,
-    action: "",
-    strike: function(enemy) {
-        if (_.random(1, 100) > enemy.dexterity) {
-            if (enemy.action == "defend") {
-                console.log(this.class + " STRIKES for " + (this.physicalAttack - (enemy.physicalDefense * 2)) + " damage!")
-                enemy.currentHitpoints -= (this.physicalAttack - enemy.physicalDefense * 2);
+    paragon: {
+        class: "Paragon",
+        hitpoints: 120,
+        currentHitpoints: 120,
+        physicalAttack: 10,
+        physicalDefense: 8,
+        specialAttack: 6,
+        specialDefense: 7,
+        dexterity: 10,
+        action: "",
+        strike: function(enemy) {
+            if (_.random(1, 100) > enemy.dexterity) {
+                if (enemy.action == "defend") {
+                    console.log(this.class + " STRIKES for " + (this.physicalAttack - (enemy.physicalDefense * 2)) + " damage!")
+                    enemy.currentHitpoints -= (this.physicalAttack - enemy.physicalDefense * 2);
+                } else {
+                    console.log(this.class + " STRIKES for " + (this.physicalAttack - (enemy.physicalDefense)) + " damage!")
+                    enemy.currentHitpoints -= (this.physicalAttack - enemy.physicalDefense);
+                }
             } else {
-                console.log(this.class + " STRIKES for " + (this.physicalAttack - (enemy.physicalDefense)) + " damage!")
-                enemy.currentHitpoints -= (this.physicalAttack - enemy.physicalDefense);
+                console.log(enemy.class + " DODGED!");
             }
-        } else {
-            console.log(enemy.class + " DODGED!");
-        }
-    },
-    special: function(enemy) {
-        if (_.random(1, 100) > enemy.dexterity) {
-            if (enemy.action == "defend") {
-                console.log(this.class + " uses their SPECIAL ATTACK for " + (this.specialAttack - (enemy.specialDefense * 2)) + " damage!")
-                enemy.currentHitpoints -= (this.specialAttack - enemy.specialDefense * 2);
+        },
+        special: function(enemy) {
+            if (_.random(1, 100) > enemy.dexterity) {
+                if (enemy.action == "defend") {
+                    console.log(this.class + " uses their SPECIAL ATTACK for " + (this.specialAttack - (enemy.specialDefense * 2)) + " damage!")
+                    enemy.currentHitpoints -= (this.specialAttack - enemy.specialDefense * 2);
+                } else {
+                    console.log(this.class + " uses their SPECIAL ATTACK for " + (this.specialAttack - (enemy.specialDefense)) + " damage!")
+                    enemy.currentHitpoints -= (this.specialAttack - enemy.specialDefense);
+                }
             } else {
-                console.log(this.class + " uses their SPECIAL ATTACK for " + (this.specialAttack - (enemy.specialDefense)) + " damage!")
-                enemy.currentHitpoints -= (this.specialAttack - enemy.specialDefense);
+                console.log(enemy.class + " DODGED!");
             }
-        } else {
-            console.log(enemy.class + " DODGED!");
-        }
-    },
-    changeStats: function(aether, material, chaos, order) {
-        this.physicalAttack = Math.floor(order * material + 8);
-        this.physicalDefense = Math.floor(((8 * material) + order) / (chaos * 2));
-        this.specialAttack = Math.floor(chaos * aether + 6);
-        this.specialDefense = Math.floor((7 + aether + chaos) / order);
-        this.dexterity = Math.floor(4);
-        firebase.database().ref('/Players/' + this.class).update({
-            physicalAttack: this.physicalDefense,
-            physicalDefense: this.physicalDefense,
-            dexterity: this.dexterity,
-            specialDefense: this.specialDefense,
-            specialAttack: this.specialAttack,
-            currentHitpoints: this.currentHitpoints
-        })
-    },
-    printStats: function() {
-        console.log("---PARAGON---");
-        console.log("Current HP: " + this.currentHitpoints);
-        console.log("PhysicalAttack: " + this.physicalAttack);
-        console.log("physicalDefense: " + this.physicalDefense);
-        console.log("specialAttack: " + this.specialAttack);
-        console.log("specialDefense: " + this.specialDefense);
-        console.log("Dexterity: " + this.dexterity);
-        console.log("Action: " + this.action);
-        console.log("");
-    },
-    AISelectAction: function(enemy) {
-        this.action = "";
-        var rng = (_.random(1, 100))
-        if ((this.physicalAttack - enemy.physicalDefense) > (this.specialAttack - enemy.specialDefense)) {
-            if (rng - (this.physicalAttack - enemy.physicalDefense) <= 0) {
-                rng = 1;
-            } else {
-                rng -= (this.physicalAttack - enemy.physicalDefense);
+        },
+        changeStats: function(aether, material, chaos, order) {
+            this.physicalAttack = Math.floor(order * material + 8);
+            this.physicalDefense = Math.floor(((8 * material) + order) / (chaos * 2));
+            this.specialAttack = Math.floor(chaos * aether + 6);
+            this.specialDefense = Math.floor((7 + aether + chaos) / order);
+            this.dexterity = Math.floor(4);
+            firebase.database().ref('/Players/' + this.class).update({
+                physicalAttack: this.physicalDefense,
+                physicalDefense: this.physicalDefense,
+                dexterity: this.dexterity,
+                specialDefense: this.specialDefense,
+                specialAttack: this.specialAttack,
+                currentHitpoints: this.currentHitpoints
+            })
+        },
+        printStats: function() {
+            console.log("---PARAGON---");
+            console.log("Current HP: " + this.currentHitpoints);
+            console.log("PhysicalAttack: " + this.physicalAttack);
+            console.log("physicalDefense: " + this.physicalDefense);
+            console.log("specialAttack: " + this.specialAttack);
+            console.log("specialDefense: " + this.specialDefense);
+            console.log("Dexterity: " + this.dexterity);
+            console.log("Action: " + this.action);
+            console.log("");
+        },
+        AISelectAction: function(enemy) {
+            this.action = "";
+            var rng = (_.random(1, 100))
+            if ((this.physicalAttack - enemy.physicalDefense) > (this.specialAttack - enemy.specialDefense)) {
+                if (rng - (this.physicalAttack - enemy.physicalDefense) <= 0) {
+                    rng = 1;
+                } else {
+                    rng -= (this.physicalAttack - enemy.physicalDefense);
+                }
             }
-        }
-        if ((this.physicalAttack - enemy.physicalDefense) < (this.specialAttack - enemy.specialDefense)) {
-            if (rng + (this.specialAttack - enemy.specialDefense) >= 100) {
-                rng = 100;
-            } else {
-                rng += (this.specialAttack - enemy.specialDefense);
+            if ((this.physicalAttack - enemy.physicalDefense) < (this.specialAttack - enemy.specialDefense)) {
+                if (rng + (this.specialAttack - enemy.specialDefense) >= 100) {
+                    rng = 100;
+                } else {
+                    rng += (this.specialAttack - enemy.specialDefense);
+                }
             }
-        }
-        if (this.currentHitpoints - (enemy.physicalAttack - this.physicalDefense) <= 0 || this.currentHitpoints - (enemy.specialAttack - this.specialDefense) <= 0) {
-            rng = (_.random(20, 80));
-        }
-        console.log(this.class + "'s random number is " + rng);
-        if (rng <= 33) {
-            this.action = "strike";
-        }
-        if (rng >= 66) {
-            this.action = "special";
-        }
-        if (rng < 60 && rng > 33) {
-            this.action = "defend";
+            if (this.currentHitpoints - (enemy.physicalAttack - this.physicalDefense) <= 0 || this.currentHitpoints - (enemy.specialAttack - this.specialDefense) <= 0) {
+                rng = (_.random(20, 80));
+            }
+            console.log(this.class + "'s random number is " + rng);
+            if (rng <= 33) {
+                this.action = "strike";
+            }
+            if (rng >= 66) {
+                this.action = "special";
+            }
+            if (rng < 66 && rng > 33) {
+                this.action = "defend";
+            }
         }
     }
 }
@@ -389,7 +391,7 @@ var environment = {
   }
 }
 
-var champions = [paragon, elementalist];
+var players = [champions.paragon, champions.elementalist];
 
 //Code to check the balancing of the champions. Not an actual part of the game.//
 var player1Win = 0;
@@ -398,9 +400,9 @@ var player2Win = 0;
 // var hundredTests = function() {
 //     for (var i = 0; i < 100; i++) {
 //         var round = 1;
-//         champions[0].currentHitpoints = champions[0].hitpoints;
-//         champions[1].currentHitpoints = champions[1].hitpoints;
-//         while (champions[0].currentHitpoints > 0 && champions[1].currentHitpoints > 0) {
+//         champions[0].currentHitpoints = players[0].hitpoints;
+//         players[1].currentHitpoints = players[1].hitpoints;
+//         while (players[0].currentHitpoints > 0 && players[1].currentHitpoints > 0) {
 //             console.log('ROUND ' + round);
 //             aether = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
 //             material = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
@@ -411,19 +413,19 @@ var player2Win = 0;
 //             console.log("Chaos: " + chaos);
 //             console.log("Order: " + order);
 //             console.log("");
-//             champions[1].changeStats(aether, material, chaos, order);
-//             champions[0].changeStats(aether, material, chaos, order);
-//             champions[1].AISelectAction(champions[0]);
-//             champions[0].AISelectAction(champions[1]);
+//             players[1].changeStats(aether, material, chaos, order);
+//             players[0].changeStats(aether, material, chaos, order);
+//             players[1].AISelectAction(players[0]);
+//             players[0].AISelectAction(players[1]);
 
-//             fight(champions);
+//             fight(players);
 
-//             champions[0].printStats();
-//             champions[1].printStats();
-//             if (champions[0].currentHitpoints <= 0) {
+//             players[0].printStats();
+//             players[1].printStats();
+//             if (players[0].currentHitpoints <= 0) {
 //                 player2Win++;
 //             }
-//             if (champions[1].currentHitpoints <= 0) {
+//             if (players[1].currentHitpoints <= 0) {
 //                 player1Win++;
 //             }
 //             round++;
@@ -442,7 +444,7 @@ var timer = {
     number: 6,
     round: 1,
     run: function() {
-        if (champions[0].currentHitpoints > 0 && champions[1].currentHitpoints > 0) {
+        if (players[0].currentHitpoints > 0 && players[1].currentHitpoints > 0) {
             console.log('ROUND ' + this.round);
             aether = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
             material = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
@@ -453,18 +455,20 @@ var timer = {
             console.log("Chaos: " + chaos);
             console.log("Order: " + order);
             console.log("");
-            champions[1].changeStats(aether, material, chaos, order);
-            champions[0].changeStats(aether, material, chaos, order);
-            champions[1].AISelectAction(champions[0]);
-            champions[0].AISelectAction(champions[1]);
             this.round++;
             firebase.database().ref("/Timer").set(true);
+            firebase.database().ref('/Globals/Environment').update({
+                aether:aether,
+                material:material,
+                chaos:chaos,
+                order:order
+            });
             counter = setInterval(this.increment, 1000);
         } else {
-            if (champions[0].currentHitpoints <= 0) {
+            if (players[0].currentHitpoints <= 0) {
                 console.log("Player 2 Wins");
             }
-            if (champions[1].currentHitpoints <= 0) {
+            if (players[1].currentHitpoints <= 0) {
                 console.log("Player 1 Wins");
             }
         }
@@ -478,14 +482,22 @@ var timer = {
     },
     stop: function() {
         firebase.database().ref("/Timer").set(false);
-        champions[0].printStats();
-        champions[1].printStats();
+        players[0].printStats();
+        players[1].printStats();
         clearInterval(counter);
-        fight(champions);
+        fight(players);
         timer.number = 6;
         timer.run();
     }
 }
+
+firebase.database().ref('/Globals/Environment').on('value',function(snapshot){
+    var newGlobals = snapshot.val();
+    players[1].changeStats(newGlobals.aether, newGlobals.material, newGlobals.chaos, newGlobals.order);
+    players[0].changeStats(newGlobals.aether, newGlobals.material, newGlobals.chaos, newGlobals.order);
+    players[1].AISelectAction(players[0]);
+    players[0].AISelectAction(players[1]);
+})
 
 timer.run();
 console.log(timer.number);
