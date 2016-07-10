@@ -1,0 +1,75 @@
+<div class="container stat-container pull-left">
+  <div class="row">
+    <div class="col-xs-4 col-sm-4">
+      <img class="thumbnail champion-icon" src="../public/images/champion_highwayman.png" />
+    </div>
+    <div class="col-xs-8 col-sm-8">
+      <h4>Highwayman</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 stat-label">
+      <span>HP: </span>
+    </div>
+    <div class="col-xs-8 col-sm-8 stat-bar nostripes yellow">
+      <span [style.width.%]="playerHP"></span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 stat-label">
+      <span>Atk: </span>
+    </div>
+    <div class="col-xs-8 col-sm-8 stat-bar nostripes">
+      <span [style.width.%]="playerHP"></span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 stat-label">
+      <span>Def: </span>
+    </div>
+    <div class="col-xs-8 col-sm-8 stat-bar nostripes">
+      <span [style.width.%]="playerHP"></span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 stat-label">
+      <span>Sp Atk: </span>
+    </div>
+    <div class="col-xs-8 col-sm-8 stat-bar nostripes">
+      <span [style.width.%]="playerHP"></span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 stat-label">
+      <span>Sp Def: </span>
+    </div>
+    <div class="col-xs-8 col-sm-8 stat-bar nostripes">
+      <span [style.width.%]="playerHP"></span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 stat-label">
+      <span>Speed: </span>
+    </div>
+    <div class="col-xs-8 col-sm-8 stat-bar nostripes">
+      <span [style.width.%]="playerHP"></span>
+    </div>
+  </div>
+</div>
+
+<!-- testing only -->
+<div class="testing">
+  <form class="form-inline">
+    <input type="number" class="form-control" min="1" max="100"
+        [(ngModel)]="playerHP" 
+        (onchange)="renderStatBar(playerHP)" />
+
+    <button (click)="renderProgress(playerHP)">Set HP</button>
+  </form>
+</div>

@@ -9,13 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var navbar_component_1 = require('./navbar.component');
+var game_component_1 = require('./game.component');
+var game_controller_component_1 = require('./game-controller.component');
 var AppComponent = (function () {
     function AppComponent() {
     }
     AppComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            template: '<h1>My First Angular 2 App</h1>'
+            selector: 'app',
+            template: "\n    <navbar></navbar>\n    <game></game>\n    <game-controller></game-controller>\n  ",
+            directives: [
+                navbar_component_1.NavbarComponent,
+                game_component_1.GameComponent,
+                game_controller_component_1.GameControllerComponent
+            ]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
