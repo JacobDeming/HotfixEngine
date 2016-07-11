@@ -333,69 +333,73 @@ var environment = {
   mountains: false,
   cityscape: false,
   forest: false,
-  affectGlobal: function(aether,material,order,chaos){
-    if(this.rain==true){
+  affectGlobal: function(){
+    firebase.database().ref('/Globals/OnOff').update({
+        rain:this.rain,
+        fog:this.fog,
+        lightning:this.lightning,
+        sunshine:this.sunshine,
+        mountains:this.mountains,
+        cityscape:this.cityscape,
+        forest:this.forest
+    })
+  }
+}
+
+firebase.database().ref('/Globals/Environment').on('value',function(snapshot){
+    var newGlobals = snapshot.val();
+    players[1].changeStats(newGlobals.aether, newGlobals.material, newGlobals.chaos, newGlobals.order);
+    players[0].changeStats(newGlobals.aether, newGlobals.material, newGlobals.chaos, newGlobals.order);
+})
+
+firebase.database().ref('/Globals/OnOff').on('value',function(snapshot){
+    var aether = 1;
+    var material = 1;
+    var chaos = 1;
+    var order = 1;
+    var onOff = snapshot.val();
+    if(onOff.rain==true){
       chaos+=1;
       material+=2;
     }
-    if(this.rain==false){
-      chaos-=1;
-      material-=2;
-    }
-    if(this.fog==true){
+    if(onOff.fog==true){
       aether+=2;
       order+=1;
     }
-    if(this.fog==false){
-      aether-=2;
-      order-=1;
-    }
-    if(this.lightning==true){
+    if(onOff.lightning==true){
       aether+=1;
       chaos+=2;
     }
-    if(this.lightning==false){
-      aether-=1;
-      chaos-=2;
-    }
-    if(this.sunshine==true){
+    if(onOff.sunshine==true){
       order+=2;
       material+=1;
     }
-    if(this.sunshine==false){
-      order-=2;
-      material-=1;
-    }
-    if(this.mountains==true){
+    if(onOff.mountains==true){
       aether+=2;
       material+=2;
     }
-    if(this.mountains==false){
-      aether-=2;
-      material-=2;
-    }
-    if(this.cityscape==true){
+    if(onOff.cityscape==true){
       order+=2;
       chaos+=2;
     }
-    if(this.cityscape==false){
-      order-=2;
-      chaos-=2;
-    }
-    firebase.database().ref('/Globals').update({
+    firebase.database().ref('/Globals/Environment').update({
       aether:aether,
       material:material,
       order:order,
       chaos:chaos
     })
-  }
-}
+})
+
+
+
 
 var players = [champions.paragon, champions.elementalist];
 
 //Code to check the balancing of the champions. Not an actual part of the game.//
 var player1Win = 0;
 var player2Win = 0;
+
+// Testing environment for checking the balancing of champions against one another. Runs 100 games with random global variables and prints how many games each champion won. Attempt to get as close to a 50-50 split as possible. 60-40 is acceptable.
 
 // var hundredTests = function() {
 //     for (var i = 0; i < 100; i++) {
@@ -440,29 +444,72 @@ var player2Win = 0;
 
 // hundredTests();
 
+// Testing environment for one game. Global variables are randomized and the firebase timer element is included.
+
+// var timer = {
+//     number: 6,
+//     round: 1,
+//     run: function() {
+//         if (players[0].currentHitpoints > 0 && players[1].currentHitpoints > 0) {
+//             console.log('ROUND ' + this.round);
+//             aether = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+//             material = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+//             chaos = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+//             order = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+//             console.log("Aether: " + aether);
+//             console.log("Material: " + material);
+//             console.log("Chaos: " + chaos);
+//             console.log("Order: " + order);
+//             console.log("");
+//             this.round++;
+//             firebase.database().ref("/Timer").set(true);
+//             firebase.database().ref('/Globals/Environment').update({
+//                 aether:aether,
+//                 material:material,
+//                 chaos:chaos,
+//                 order:order
+//             });
+//             counter = setInterval(this.increment, 1000);
+//         } else {
+//             if (players[0].currentHitpoints <= 0) {
+//                 console.log("Player 2 Wins");
+//             }
+//             if (players[1].currentHitpoints <= 0) {
+//                 console.log("Player 1 Wins");
+//             }
+//         }
+//     },
+//     increment: function() {
+//         timer.number--;
+//         console.log(timer.number);
+//         if (timer.number === 1) {
+//             timer.stop();
+//         }
+//     },
+//     stop: function() {
+//         firebase.database().ref("/Timer").set(false);
+//         players[0].printStats();
+//         players[1].printStats();
+//         clearInterval(counter);
+//         fight(players);
+//         timer.number = 6;
+//         timer.run();
+//     }
+// }
+
+// timer.run();
+// console.log(timer.number);
+
 var timer = {
     number: 6,
     round: 1,
     run: function() {
         if (players[0].currentHitpoints > 0 && players[1].currentHitpoints > 0) {
             console.log('ROUND ' + this.round);
-            aether = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
-            material = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
-            chaos = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
-            order = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
-            console.log("Aether: " + aether);
-            console.log("Material: " + material);
-            console.log("Chaos: " + chaos);
-            console.log("Order: " + order);
-            console.log("");
+            players[1].AISelectAction(players[0]);
+            players[0].AISelectAction(players[1]);
             this.round++;
             firebase.database().ref("/Timer").set(true);
-            firebase.database().ref('/Globals/Environment').update({
-                aether:aether,
-                material:material,
-                chaos:chaos,
-                order:order
-            });
             counter = setInterval(this.increment, 1000);
         } else {
             if (players[0].currentHitpoints <= 0) {
@@ -475,6 +522,15 @@ var timer = {
     },
     increment: function() {
         timer.number--;
+        for (var key in environment){
+            console.log(environment[key]);
+            if(typeof environment[key] =="boolean"){
+                if(_.random(1,2)==2){
+                    environment[key] = !environment[key];
+                }
+            }
+        }
+        environment.affectGlobal();
         console.log(timer.number);
         if (timer.number === 1) {
             timer.stop();
@@ -490,14 +546,6 @@ var timer = {
         timer.run();
     }
 }
-
-firebase.database().ref('/Globals/Environment').on('value',function(snapshot){
-    var newGlobals = snapshot.val();
-    players[1].changeStats(newGlobals.aether, newGlobals.material, newGlobals.chaos, newGlobals.order);
-    players[0].changeStats(newGlobals.aether, newGlobals.material, newGlobals.chaos, newGlobals.order);
-    players[1].AISelectAction(players[0]);
-    players[0].AISelectAction(players[1]);
-})
 
 timer.run();
 console.log(timer.number);
