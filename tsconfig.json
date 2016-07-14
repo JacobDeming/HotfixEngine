@@ -1,0 +1,23 @@
+{
+  "compilerOptions":{
+    "target":"ES5",
+    "module":"commonjs",
+    "moduleResolution":"node",
+    "sourceMap":true,
+    "emitDecoratorMetadata":true,
+    "experimentalDecorators":true,
+    "removeComments":true,
+    "noImplicitAny":false,
+    "outDir":"../public/javascripts/app"
+  },
+  "files":[
+    "./assets/app/boot.ts",
+    "node_modules/angularfire2/firebase3.d.ts"],
+  "exclude": [
+    "node_modules",
+    "typings/global",
+    "typings/global.d.ts"],
+  "atom":{
+    "rewriteTsconfig": true
+  }
+}
