@@ -28,7 +28,10 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
 
 export class StatsComponent{
   champion: FirebaseObjectObservable<any>;
+  playerClass: string;
+
   constructor(af:AngularFire){
-    this.champion = af.database.object('/Players/Elementalist');
+    this.playerClass="Highwayman";
+    this.champion = af.database.object('/Players/'+this.playerClass);
   }
 }
