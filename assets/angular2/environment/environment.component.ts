@@ -9,22 +9,23 @@ import {EnvironmentService} from './environment.service';
   template: `
   <div *ngIf="snapshot">
     <p>Rain: {{snapshot.rain}}</p>
-    <button (click)="change('rain')">Change Rain</button>
+    <button (click)="changeEnvironment('rain')">Change Rain</button>
     <p>Fog: {{snapshot.fog}}</p>
-    <button (click)="change('fog')">Change Fog</button>
+    <button (click)="changeEnvironment('fog')">Change Fog</button>
     <p>Lightning: {{snapshot.lightning}}</p>
-    <button (click)="change('lightning')">Change Lightning</button>
+    <button (click)="changeEnvironment('lightning')">Change Lightning</button>
     <p>Sunshine: {{snapshot.sunshine}}</p>
-    <button (click)="change('sunshine')">Change Sunshine</button>
+    <button (click)="changeEnvironment('sunshine')">Change Sunshine</button>
     <p>Hail: {{snapshot.hail}}</p>
-    <button (click)="change('hail')">Change Hail</button>
+    <button (click)="changeEnvironment('hail')">Change Hail</button>
     <p>Wind: {{snapshot.wind}}</p>
-    <button (click)="change('wind')">Change Wind</button>
+    <button (click)="changeEnvironment('wind')">Change Wind</button>
   </div>
   `,
 })
 
 export class EnvironmentComponent{
+  onOff:FirebaseObjectObservable<any>;
   environment:FirebaseObjectObservable<any>;
   URL: string;
   snapshot: {
@@ -38,63 +39,92 @@ export class EnvironmentComponent{
 
   constructor(af:AngularFire, private _environmentService:EnvironmentService){
     this.URL = window.location.href;
-    this.environment = af.database.object('/'+this.URL.split('/game/')[1]+'/Globals/OnOff',{preserveSnapshot:true});
-    this.environment.subscribe(snapshot =>{
-      console.log(snapshot.val());
+    this.onOff = af.database.object('/'+this.URL.split('/game/')[1]+'/Globals/OnOff',{preserveSnapshot:true});
+    this.onOff.subscribe(snapshot =>{
       this.snapshot = snapshot.val();
     })
+    this.environment = af.database.object('/'+this.URL.split('/game/')[1]+'/Globals/Environment');
   }
 
-  change(x){
+  changeEnvironment(x){
+    var aether = 1;
+    var material = 1;
+    var chaos = 1;
+    var order = 1;
     switch(x){
       case 'rain':
         if(this.snapshot.rain==true){
-          this.environment.update({rain:false})
+          this.onOff.update({rain:false})
           break;
         } else {
-          this.environment.update({rain:true});
+          this.onOff.update({rain:true});
           break;
         }
       case 'fog':
           if(this.snapshot.fog==true){
-            this.environment.update({fog:false})
+            this.onOff.update({fog:false})
             break;
           } else {
-            this.environment.update({fog:true});
+            this.onOff.update({fog:true});
             break;
           }
       case 'lightning':
         if(this.snapshot.lightning==true){
-          this.environment.update({lightning:false})
+          this.onOff.update({lightning:false})
           break;
         } else {
-          this.environment.update({lightning:true});
+          this.onOff.update({lightning:true});
           break;
         }
       case 'sunshine':
         if(this.snapshot.sunshine==true){
-          this.environment.update({sunshine:false})
+          this.onOff.update({sunshine:false})
           break;
         } else {
-          this.environment.update({sunshine:true});
+          this.onOff.update({sunshine:true});
           break;
         }
       case 'hail':
         if(this.snapshot.hail==true){
-          this.environment.update({hail:false})
+          this.onOff.update({hail:false})
           break;
         } else {
-          this.environment.update({hail:true});
+          this.onOff.update({hail:true});
           break;
         }
       case 'wind':
         if(this.snapshot.wind==true){
-          this.environment.update({wind:false})
+          this.onOff.update({wind:false})
           break;
         } else {
-          this.environment.update({wind:true});
+          this.onOff.update({wind:true});
           break;
         }
     }
+    if (this.snapshot.rain == true) {
+        chaos += 1;
+        material += 2;
+    }
+    if (this.snapshot.fog == true) {
+        aether += 2;
+        order += 1;
+    }
+    if (this.snapshot.lightning == true) {
+        aether += 1;
+        chaos += 2;
+    }
+    if (this.snapshot.sunshine == true) {
+        order += 2;
+        material += 1;
+    }
+    if (this.snapshot.hail == true) {
+        aether += 2;
+        material += 2;
+    }
+    if (this.snapshot.wind == true) {
+        order += 2;
+        chaos += 2;
+    }
+  this.environment.set({aether:aether,material:material,chaos:chaos,order:order})
   }
 }
