@@ -13,13 +13,18 @@ firebase.initializeApp({
     }
 });
 
-router.get('/', function(req, res, next) {
+router.get('/',function(req,res,next){
+  firebase.database().ref().set({'Players':Champions,'Globals':Globals,'Timer':false});
+  res.redirect('/game/blah');
+})
+
+router.get('/login', function(req, res, next) {
   var firebaseServer = firebase.database().ref();
-  var newServer = firebaseServer.push();
-  newServer.set({'Players':Champions,'Globals':Globals});
-  var path = newServer.toString();
-  console.log(path);
-  res.render('index');
+  res.redirect('/game/'+firebaseServer.push({'Rooms':{'Players':Champions,'Globals':Globals,'Timer':false}}).toString().split('https://hotfix-f82fc.firebaseio.com/')[1]);
 });
+
+router.get('/game/:roomPath',function(req,res,next){
+  res.render('index');
+})
 
 module.exports = router;

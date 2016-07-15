@@ -1,5 +1,5 @@
 var Champions = {
-    elementalist: {
+    Elementalist: {
         playerClass: "Elementalist",
         hitpoints: 50,
         currentHitpoints: 50,
@@ -11,7 +11,7 @@ var Champions = {
         action: ""
     },
 
-    highwayman: {
+    Highwayman: {
         playerClass: "Highwayman",
         hitpoints: 80,
         currentHitpoints: 80,
@@ -23,7 +23,7 @@ var Champions = {
         action: ""
     },
 
-    paragon: {
+    Paragon: {
         playerClass: "Paragon",
         hitpoints: 120,
         currentHitpoints: 120,
