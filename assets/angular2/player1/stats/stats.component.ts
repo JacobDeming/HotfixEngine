@@ -29,9 +29,12 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
 export class StatsComponent{
   champion: FirebaseObjectObservable<any>;
   playerClass: string;
+  URL: string;
 
   constructor(af:AngularFire){
+    this.URL = window.location.href;
+    console.log(this.URL.split('/game/'));
     this.playerClass="Highwayman";
-    this.champion = af.database.object('/Players/'+this.playerClass);
+    this.champion = af.database.object('/Rooms/'+this.URL.split('/game/')[1]+'/Players/'+this.playerClass);
   }
 }

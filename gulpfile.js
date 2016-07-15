@@ -4,8 +4,8 @@ var gulpTypescript = require('gulp-typescript');
 var gulpSourcemaps = require('gulp-sourcemaps');
 
 var appDev = 'assets/angular2/';
-var appProd = 'public/javascripts/app/';
-var vendor = 'public/javascripts/vendor';
+var appProd = 'public/game/javascripts/app/';
+var vendor = 'public/game/javascripts/vendor';
 
 var tsconfig = gulpTypescript.createProject('tsconfig.json');
 
