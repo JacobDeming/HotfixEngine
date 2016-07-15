@@ -35,6 +35,6 @@ export class StatsComponent{
     this.URL = window.location.href;
     console.log(this.URL.split('/game/'));
     this.playerClass="Highwayman";
-    this.champion = af.database.object('/Rooms/'+this.URL.split('/game/')[1]+'/Players/'+this.playerClass);
+    this.champion = af.database.object('/'+this.URL.split('/game/')[1]+'/Players/'+this.playerClass);
   }
 }
