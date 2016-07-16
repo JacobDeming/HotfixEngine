@@ -1,24 +1,7 @@
 body {
   font-family: 'Ubuntu Mono', monospace;
   color: #fff;
-  margin: 2em;
-  /* full bleed background */
-  background: url(../images/background.jpg) #222 no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.fancy {
-  font-family: 'Playfair Display', serif;
-  font-weight: '400';
-  font-style: normal;
-  font-size: 34px;
-}
-
-.fancy.bolder {
-  font-weight: '900';
+  overflow: hidden;
 }
 
 /* /main */
@@ -68,12 +51,29 @@ body {
 
 /* /navbar */
 
-.game-container, .game-controller-container {
-  border: 1px solid white;
-  background: transparent;
+.env-container {
+  background: url(../images/body-bg.png) #222;
+  border-top: 1px solid #ccc;
+  display: block;
+  position: absolute;
+  bottom: 0;
   width: 100%;
+  height: 112px;
+  padding: 16px 0;
+}
+
+.game-container {
+  width: 100%;
+  height: 100%;
+  min-height: 820px;
   display: block;
   position: relative;
+  /* full bleed background */
+  background: url(../images/background.jpg) #222 no-repeat center bottom fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .stat-container {
@@ -123,5 +123,3 @@ body {
 }
 
 /* /game */
-
-/* /game controller */
