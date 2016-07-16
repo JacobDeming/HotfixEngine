@@ -3,6 +3,7 @@ var router = express.Router();
 
 var Champions = require('./utils/Champions.js');
 var Globals = require('./utils/Globals.js');
+var HelperMethods = require('./utils/Helpers.js');
 
 var firebase = require('firebase');
 firebase.initializeApp({
@@ -30,10 +31,9 @@ router.get('/game/:roomPath',function(req,res,next){
 })
 
 router.post('/update',function(req,res,next){
-  console.log(req.body.key);
-  console.log('/'+req.body.key+'/Globals/Environment');
-  firebase.database().ref('/'+req.body.key+'/Globals/Environment').once('value',function(snapshot){
-    console.log(snapshot.val());
+  firebase.database().ref('/'+req.body.key+'/Globals/Environment').on('value',function(snapshot){
+    snapshot=snapshot.val();
+    HelperMethods.updateChampions(firebase,req.body.key,snapshot.aether,snapshot.material,snapshot.chaos,snapshot.order);
   })
 })
 

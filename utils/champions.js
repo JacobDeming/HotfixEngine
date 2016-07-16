@@ -251,7 +251,7 @@ var champions = {
                 console.log(enemy.playerClass + " DODGED!");
             }
         },
-        cchangeStats: function(aether, material, chaos, order) {
+        changeStats: function(aether, material, chaos, order) {
             this.physicalAttack = Math.floor(order * material + 8);
             this.physicalDefense = Math.floor(((8 * material) + order) / (chaos * 2));
             this.specialAttack = Math.floor(chaos * aether + 6);
