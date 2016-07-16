@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
+import {Http,Headers} from '@angular/http';
 
-import {Environment} from './Environment';
-import {EnvironmentService} from './environment.service';
+declare var $:JQueryStatic;
 
 @Component({
   selector: 'environment',
@@ -37,7 +37,7 @@ export class EnvironmentComponent{
     wind:boolean,
   }
 
-  constructor(af:AngularFire, private _environmentService:EnvironmentService){
+  constructor(af:AngularFire, private _http:Http){
     this.URL = window.location.href;
     this.onOff = af.database.object('/'+this.URL.split('/game/')[1]+'/Globals/OnOff',{preserveSnapshot:true});
     this.onOff.subscribe(snapshot =>{
@@ -126,5 +126,10 @@ export class EnvironmentComponent{
         chaos += 2;
     }
   this.environment.set({aether:aether,material:material,chaos:chaos,order:order})
+  const body = {key:this.URL.split('/game/')[1]};
+  const headers = new Headers({'Content-Type': 'application/json'});
+  $.post('/update',body,function(result){
+    console.log("SENT!");
+  })
   }
 }
