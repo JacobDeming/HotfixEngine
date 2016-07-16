@@ -13,6 +13,8 @@ firebase.initializeApp({
     }
 });
 
+var oldData 
+
 router.get('/',function(req,res,next){
   firebase.database().ref().set({'Players':Champions,'Globals':Globals,'Timer':false});
   res.redirect('/game/blah');
@@ -28,8 +30,11 @@ router.get('/game/:roomPath',function(req,res,next){
 })
 
 router.post('/update',function(req,res,next){
-  console.log('click');
-  console.log(req);
+  console.log(req.body.key);
+  console.log('/'+req.body.key+'/Globals/Environment');
+  firebase.database().ref('/'+req.body.key+'/Globals/Environment').once('value',function(snapshot){
+    console.log(snapshot.val());
+  })
 })
 
 module.exports = router;
