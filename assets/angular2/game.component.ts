@@ -8,9 +8,11 @@ import {EnvironmentComponent} from './environment/environment.component';
   selector: 'my-app',
   template:`
   <navbar></navbar>
-  <div class="container game-container">
+  <div class="game-container">
     <player1></player1>
     <player2></player2>
+  </div>
+  <div class="env-container">
     <environment></environment>
   </div>
   `,
