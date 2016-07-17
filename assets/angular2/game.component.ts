@@ -1,6 +1,7 @@
 import {Component,OnDestroy} from '@angular/core';
 import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
 
+import {TimerComponent} from './timer/timer.component';
 import {Player1Component} from './player1/player1.component';
 import {EnvironmentComponent} from './environment/environment.component';
 
@@ -9,6 +10,7 @@ import {EnvironmentComponent} from './environment/environment.component';
   template:`
   <navbar></navbar>
   <div class="game-container">
+    <timer></timer>
     <player1></player1>
     <player2></player2>
   </div>
@@ -16,7 +18,7 @@ import {EnvironmentComponent} from './environment/environment.component';
     <environment></environment>
   </div>
   `,
-  directives: [Player1Component,EnvironmentComponent]
+  directives: [Player1Component,EnvironmentComponent,TimerComponent]
 })
 
 export class GameComponent implements OnDestroy{

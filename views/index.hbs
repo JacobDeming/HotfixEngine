@@ -34,6 +34,19 @@
 </head>
 <body>
   <my-app>Loading...</my-app>
+
+<script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDfeeNYOqFPQY5k7QKkuqxNjoEkmyVemTw",
+    authDomain: "hotfix-f82fc.firebaseapp.com",
+    databaseURL: "https://hotfix-f82fc.firebaseio.com",
+    storageBucket: "hotfix-f82fc.appspot.com",
+  };
+  firebase.initializeApp(config);
+</script>
+    
 <script>
   System.import('app').catch(function(err){console.error(err)});
 </script>
