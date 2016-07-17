@@ -1,9 +1,6 @@
 import {Component,Renderer,ElementRef} from '@angular/core';
 import {NgSwitch, NgSwitchCase, NgSwitchDefault} from '@angular/common';
 import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
-import {Http,Headers} from '@angular/http';
-
-declare var $:JQueryStatic;
 
 @Component({
   selector: 'environment',
@@ -25,52 +22,52 @@ declare var $:JQueryStatic;
   </div>
   //-->
 
-  <div class="container">
+  <div *ngIf="environmentSnapshot" class="container">
     <div class="col-sm-6 pull-left">
       <p>
         To play, press key to turn on/off:<br>
-        [a] FOG; [s] HAIL; [d] LIGHTNING; [f] RAIN; [g] SUNSHINE; [h] WIND.</p>
+        [A] FOG; [S] HAIL; [D] LIGHTNING; [F] RAIN; [G] SUNSHINE; [H] WIND.</p>
     </div>
     <div class="col-sm-6 pull-right envBtns" *ngIf="environment">
-      <div class="envBtnWrapper" (click)="toggleBtn('fog')" [ngSwitch]="values.fog">
-        <div *ngSwitchCase="'true'" class="envBtn active">
+      <div class="envBtnWrapper" (click)="toggleBtn('fog')" [ngSwitch]="environmentSnapshot.fog">
+        <div *ngSwitchCase='true' class="envBtn active">
           <img src="./images/env_btn/env_fog_on.png"></div>
-        <div *ngSwitchCase="'false'" class="envBtn">
+        <div *ngSwitchCase='false' class="envBtn">
           <img src="./images/env_btn/env_fog.png"></div>
         <p class="imgDescription">Fog</p>
       </div>
-      <div class="envBtnWrapper" (click)="toggleBtn('hail')" [ngSwitch]="values.hail">
-        <div *ngSwitchCase="'true'" class="envBtn active">
+      <div class="envBtnWrapper" (click)="toggleBtn('hail')" [ngSwitch]="environmentSnapshot.hail">
+        <div *ngSwitchCase='true' class="envBtn active">
           <img src="./images/env_btn/env_hail_on.png"></div>
-        <div *ngSwitchCase="'false'" class="envBtn">
+        <div *ngSwitchCase='false' class="envBtn">
           <img src="./images/env_btn/env_hail.png"></div>
         <p class="imgDescription">Hail</p>
       </div>
-      <div class="envBtnWrapper" (click)="toggleBtn('lightning')" [ngSwitch]="values.lightning">
-        <div *ngSwitchCase="'true'" class="envBtn active">
+      <div class="envBtnWrapper" (click)="toggleBtn('lightning')" [ngSwitch]="environmentSnapshot.lightning">
+        <div *ngSwitchCase='true' class="envBtn active">
           <img src="./images/env_btn/env_lightning_on.png"></div>
-        <div *ngSwitchCase="'false'" class="envBtn">
+        <div *ngSwitchCase='false' class="envBtn">
           <img src="./images/env_btn/env_lightning.png"></div>
         <p class="imgDescription">Lightning</p>
       </div>
-      <div class="envBtnWrapper" (click)="toggleBtn('rain')" [ngSwitch]="values.rain">
-        <div *ngSwitchCase="'true'" class="envBtn active">
+      <div class="envBtnWrapper" (click)="toggleBtn('rain')" [ngSwitch]="environmentSnapshot.rain">
+        <div *ngSwitchCase='true' class="envBtn active">
           <img src="./images/env_btn/env_rain_on.png"></div>
-        <div *ngSwitchCase="'false'" class="envBtn">
+        <div *ngSwitchCase='false' class="envBtn">
           <img src="./images/env_btn/env_rain.png"></div>
         <p class="imgDescription">Rain</p>
       </div>
-      <div class="envBtnWrapper" (click)="toggleBtn('sunshine')" [ngSwitch]="values.sunshine">
-        <div *ngSwitchCase="'true'" class="envBtn active">
+      <div class="envBtnWrapper" (click)="toggleBtn('sunshine')" [ngSwitch]="environmentSnapshot.sunshine">
+        <div *ngSwitchCase='true' class="envBtn active">
           <img src="./images/env_btn/env_sun_on.png"></div>
-        <div *ngSwitchCase="'false'" class="envBtn">
+        <div *ngSwitchCase='false' class="envBtn">
           <img src="./images/env_btn/env_sun.png"></div>
         <p class="imgDescription">Sunshine</p>
       </div>
-      <div class="envBtnWrapper" (click)="toggleBtn('wind')" [ngSwitch]="values.wind">
-        <div *ngSwitchCase="'true'" class="envBtn active">
+      <div class="envBtnWrapper" (click)="toggleBtn('wind')" [ngSwitch]="environmentSnapshot.wind">
+        <div *ngSwitchCase='true' class="envBtn active">
           <img src="./images/env_btn/env_wind_on.png"></div>
-        <div *ngSwitchCase="'false'" class="envBtn">
+        <div *ngSwitchCase='false' class="envBtn">
           <img src="./images/env_btn/env_wind.png"></div>
         <p class="imgDescription">Wind</p>
       </div>
@@ -156,25 +153,64 @@ declare var $:JQueryStatic;
 export class EnvironmentComponent {
   onOff:FirebaseObjectObservable<any>;
   environment:FirebaseObjectObservable<any>;
+  players:FirebaseObjectObservable<any>;
   URL:string;
-  snapshot: {
+  environmentSnapshot: {
     fog:boolean,
     hail:boolean,
     lightning:boolean,
     rain:boolean,
     sunshine:boolean,
     wind:boolean,
-  }
+  };
+  playersSnapshot: {
+    Elementalist: {
+      playerClass: string;
+      hitpoints: number;
+      currentHitpoints: number;
+      physicalAttack: number;
+      physicalDefense: number;
+      specialAttack: number;
+      specialDefense: number;
+      dexterity: number;
+      action: string;
+    }
+    Highwayman: {
+      playerClass: string;
+      hitpoints: number;
+      currentHitpoints: number;
+      physicalAttack: number;
+      physicalDefense: number;
+      specialAttack: number;
+      specialDefense: number;
+      dexterity: number;
+      action: string;
+    }
+    Paragon: {
+      playerClass: string;
+      hitpoints: number;
+      currentHitpoints: number;
+      physicalAttack: number;
+      physicalDefense: number;
+      specialAttack: number;
+      specialDefense: number;
+      dexterity: number;
+      action: string;
+    }
+  };
   getKey:Function;
 
-  constructor(af:AngularFire, private _http:Http, renderer: Renderer){
+  constructor(af:AngularFire, renderer: Renderer){
     this.URL = window.location.href;
     this.onOff = af.database.object('/'+this.URL.split('/game/')[1]+'/Globals/OnOff',{preserveSnapshot:true});
     this.onOff.subscribe(snapshot =>{
-      this.snapshot = snapshot.val();
-    })
+      this.environmentSnapshot = snapshot.val();
+    });
     this.environment = af.database.object('/'+this.URL.split('/game/')[1]+'/Globals/Environment');
-
+    this.players = af.database.object('/'+this.URL.split('/game/')[1]+'/Players',{preserveSnapshot:true});
+    this.players.subscribe(snapshot =>{
+      this.playersSnapshot = snapshot.val();
+    });
     /* Gets keyup */
     this.getKey = renderer.listenGlobal('document', 'keyup', (event) => {
       var key = event.keyCode;
@@ -189,15 +225,15 @@ export class EnvironmentComponent {
     var order = 1;
     switch(x){
       case 'rain':
-        if(this.snapshot.rain==true){
-          this.onOff.update({rain:false})
+        if(this.environmentSnapshot.rain==true){
+          this.onOff.update({rain:false});
           break;
         } else {
           this.onOff.update({rain:true});
           break;
         }
       case 'fog':
-          if(this.snapshot.fog==true){
+          if(this.environmentSnapshot.fog==true){
             this.onOff.update({fog:false})
             break;
           } else {
@@ -205,7 +241,7 @@ export class EnvironmentComponent {
             break;
           }
       case 'lightning':
-        if(this.snapshot.lightning==true){
+        if(this.environmentSnapshot.lightning==true){
           this.onOff.update({lightning:false})
           break;
         } else {
@@ -213,7 +249,7 @@ export class EnvironmentComponent {
           break;
         }
       case 'sunshine':
-        if(this.snapshot.sunshine==true){
+        if(this.environmentSnapshot.sunshine==true){
           this.onOff.update({sunshine:false})
           break;
         } else {
@@ -221,7 +257,7 @@ export class EnvironmentComponent {
           break;
         }
       case 'hail':
-        if(this.snapshot.hail==true){
+        if(this.environmentSnapshot.hail==true){
           this.onOff.update({hail:false})
           break;
         } else {
@@ -229,7 +265,7 @@ export class EnvironmentComponent {
           break;
         }
       case 'wind':
-        if(this.snapshot.wind==true){
+        if(this.environmentSnapshot.wind==true){
           this.onOff.update({wind:false})
           break;
         } else {
@@ -237,75 +273,67 @@ export class EnvironmentComponent {
           break;
         }
     }
-    if (this.snapshot.rain == true) {
+    if (this.environmentSnapshot.rain == true) {
         chaos += 1;
         material += 2;
     }
-    if (this.snapshot.fog == true) {
+    if (this.environmentSnapshot.fog == true) {
         aether += 2;
         order += 1;
     }
-    if (this.snapshot.lightning == true) {
+    if (this.environmentSnapshot.lightning == true) {
         aether += 1;
         chaos += 2;
     }
-    if (this.snapshot.sunshine == true) {
+    if (this.environmentSnapshot.sunshine == true) {
         order += 2;
         material += 1;
     }
-    if (this.snapshot.hail == true) {
+    if (this.environmentSnapshot.hail == true) {
         aether += 2;
         material += 2;
     }
-    if (this.snapshot.wind == true) {
+    if (this.environmentSnapshot.wind == true) {
         order += 2;
         chaos += 2;
     }
-  this.environment.set({aether:aether,material:material,chaos:chaos,order:order})
-  const body = {key:this.URL.split('/game/')[1]};
-  const headers = new Headers({'Content-Type': 'application/json'});
-  $.post('/update',body,function(result){
-    console.log("SENT!");
-  })
+  this.environment.set({aether:aether,material:material,chaos:chaos,order:order});
+  this.changeChampionStats(aether,material,chaos,order);
   }
 
-
-
-
-  // for testing only, needs to be set to values from firebase
-  values = {
-    fog: 'false',
-    hail: 'false',
-    lightning: 'false',
-    rain: 'false',
-    sunshine: 'false',
-    wind: 'false',
-  };
+  changeChampionStats(aether,material,chaos,order){
+    this.playersSnapshot.Highwayman.physicalAttack = Math.floor((chaos * material) + 10);
+    this.playersSnapshot.Highwayman.physicalDefense = Math.floor(5 + material);
+    this.playersSnapshot.Highwayman.specialAttack = Math.floor(2 + (2 * order));
+    this.playersSnapshot.Highwayman.specialDefense = Math.floor(3 + chaos + aether);
+    this.playersSnapshot.Highwayman.dexterity = Math.floor(((10 * aether) + order) / material);
+    this.players.update(this.playersSnapshot);
+  }
 
   toggleBtn(key) {
     // a
     if (key == '65' || key == 'fog') {
-      this.values.fog = this.values.fog === 'true' ? 'false' : 'true';
+      this.changeEnvironment('fog');
     }
     // s
     if (key == '83' || key == 'hail') {
-      this.values.hail = this.values.hail === 'true' ? 'false' : 'true';
+      this.changeEnvironment('hail');
     }
     // d
     if (key == '68' || key == 'lightning') {
-      this.values.lightning = this.values.lightning === 'true' ? 'false' : 'true';
+      this.changeEnvironment('lightning');
     }
     // f
     if (key == '70' || key == 'rain') {
-      this.values.rain = this.values.rain === 'true' ? 'false' : 'true';
+      this.changeEnvironment('rain');
     }
     // g
     if (key == '71' || key == 'sunshine') {
-      this.values.sunshine = this.values.sunshine === 'true' ? 'false' : 'true';
+      this.changeEnvironment('sunshine');
     }
     // h
     if (key == '72' || key == 'wind') {
-      this.values.wind = this.values.wind === 'true' ? 'false' : 'true';
+      this.changeEnvironment('wind');
     }
   }
 }

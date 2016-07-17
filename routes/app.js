@@ -14,27 +14,40 @@ firebase.initializeApp({
     }
 });
 
-var oldData 
-
 router.get('/',function(req,res,next){
-  firebase.database().ref().set({'Players':Champions,'Globals':Globals,'Timer':false});
-  res.redirect('/game/blah');
+  res.render('login');
 })
 
-router.get('/login', function(req, res, next) {
+router.post('/loggingIn', function(req, res, next) {
   var firebaseServer = firebase.database().ref();
-  res.redirect('/game/'+firebaseServer.push({'Players':Champions,'Globals':Globals,'Timer':false}).toString().split('https://hotfix-f82fc.firebaseio.com/')[1]);
+  var serverId="";
+  var count = 0;
+  var findingServer = firebaseServer.once("value",function(snapshot){
+    if(snapshot.val()){
+      snapshot.forEach(function(childSnapshot){
+        count++;
+        if(childSnapshot.val().Open==true){
+          console.log("Found a server: "+childSnapshot.val());
+          serverId=childSnapshot.key;
+          console.log(serverId);
+          res.redirect('/game/'+serverId);
+          firebase.database().ref('/'+serverId).update({'Open':false});
+          return;
+        }
+        if(count>=snapshot.numChildren()){
+          console.log("Servers are full! Making a server!");
+          res.redirect('/game/'+firebaseServer.push({'Players':Champions,'Globals':Globals,'Open':true,'Timer':5}).toString().split('https://hotfix-f82fc.firebaseio.com/')[1]);
+        }
+      })
+    } else {
+      console.log("No servers! Making a new one!");
+      res.redirect('/game/'+firebaseServer.push({'Players':Champions,'Globals':Globals,'Open':true,'Timer':5}).toString().split('https://hotfix-f82fc.firebaseio.com/')[1]);
+    }
+  })
 });
 
 router.get('/game/:roomPath',function(req,res,next){
   res.render('index');
-})
-
-router.post('/update',function(req,res,next){
-  firebase.database().ref('/'+req.body.key+'/Globals/Environment').on('value',function(snapshot){
-    snapshot=snapshot.val();
-    HelperMethods.updateChampions(firebase,req.body.key,snapshot.aether,snapshot.material,snapshot.chaos,snapshot.order);
-  })
 })
 
 module.exports = router;
