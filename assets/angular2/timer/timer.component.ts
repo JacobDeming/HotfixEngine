@@ -52,7 +52,6 @@ export class TimerComponent{
   //Timer functionality
   resetClock(){
     if(this.host==true){
-      this.AIselect();
       this.gameClock = { 
         duration:5,
         ticks:0
@@ -64,7 +63,7 @@ export class TimerComponent{
     if(this.host==true){
       this.resetClock();
       this.timerSubscription.unsubscribe();
-      this.runClock();
+      this.fight(this.playersInfo.player1,this.playersInfo.player2);
     }
   }
 
@@ -84,10 +83,59 @@ export class TimerComponent{
   }
 
   //Gameplay functionality
-  AIselect(){
-    if(this.host==true){
-      console.log(this.playersInfo);
-      console.log(this.environmentInfo);
+  fight(player1,player2){
+    if(player1.action == "strike"){
+      if(Math.floor(Math.random()*(100-0+1)+1)>player2.dexterity){
+        if(player2.action == "defend"){
+          player2.currentHitpoints -= (player1.physicalAttack - player2.physicalDefense * 2);
+        } else {
+          player2.currentHitpoints -= (player1.physicalAttack - player2.physicalDefense);
+        }
+      } else {
+        console.log("PLAYER 2 DODGED!");
+      }
     }
+    if(player1.action == "special"){
+      if(Math.floor(Math.random()*(100-0+1)+1)>player2.dexterity){
+        if(player2.action == "defend"){
+          player2.currentHitpoints -= (player1.specialAttack - player2.specialDefense * 2);
+        } else {
+          player2.currentHitpoints -= (player1.specialAttack - player2.specialDefense);
+        }
+      } else {
+        console.log("PLAYER 2 DODGED!");
+      }
+    }
+    if(player2.action == "strike"){
+      if(Math.floor(Math.random()*(100-0+1)+1)>player1.dexterity){
+        if(player1.action == "defend"){
+          player1.currentHitpoints -= (player2.physicalAttack - player1.physicalDefense * 2);
+        } else {
+          player1.currentHitpoints -= (player2.physicalAttack - player1.physicalDefense);
+        }
+      } else {
+        console.log("PLAYER 1 DODGED!");
+      }
+    }
+    if(player2.action == "special"){
+      if(Math.floor(Math.random()*(100-0+1)+1)>player1.dexterity){
+        if(player1.action == "defend"){
+          player1.currentHitpoints -= (player2.specialAttack - player1.specialDefense * 2);
+        } else {
+          player1.currentHitpoints -= (player2.specialAttack - player1.specialDefense);
+        }
+      } else {
+        console.log("PLAYER 1 DODGED!");
+      }
+    }
+  this.firebaseServer.update({Players:{player1:this.playersInfo.player1,player2:this.playersInfo.player2}});
+  if(player1.currentHitpoints <= 0){
+    console.log("PLAYER 2 WINS!");
+  }
+  if(player2.currentHitpoints <= 0){
+    console.log("PLAYER 1 WINS!");
+  } else {
+    this.runClock();
+  }
   }
 }

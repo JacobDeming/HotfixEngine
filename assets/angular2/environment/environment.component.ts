@@ -308,7 +308,37 @@ export class EnvironmentComponent {
       this.playersSnapshot.player2.specialAttack = Math.floor(chaos * aether + 6);
       this.playersSnapshot.player2.specialDefense = Math.floor((7 + aether + chaos) / order);
     }
+    this.playersSnapshot.player1.action = this.AISelectAction(this.playersSnapshot.player1,this.playersSnapshot.player2);
+    this.playersSnapshot.player2.action = this.AISelectAction(this.playersSnapshot.player1,this.playersSnapshot.player2);
     this.players.update(this.playersSnapshot);
+  }
+
+  AISelectAction(player,enemy){
+    var action = "";
+    var rng = (Math.floor(Math.random()*(100 - 0 + 1) + 0));
+    if ((player.physicalAttack - enemy.physicalDefense) > (player.specialAttack - enemy.specialDefense)) {
+        if (rng - (player.physicalAttack - enemy.physicalDefense) <= 0) {
+            rng = 1;
+        } else {
+            rng -= (player.physicalAttack - enemy.physicalDefense);
+        }
+    }
+    if ((player.physicalAttack - enemy.physicalDefense) < (player.specialAttack - enemy.specialDefense)) {
+        if (rng + (player.specialAttack - enemy.specialDefense) >= 100) {
+            rng = 100;
+        } else {
+            rng += (player.specialAttack - enemy.specialDefense);
+        }
+    }
+    if (rng <= 33) {
+        return "strike";
+    }
+    if (rng >= 66) {
+        return"special";
+    }
+    if (rng < 66 && rng > 33) {
+        return "defend";
+    }
   }
 
   toggleBtn(key) {
