@@ -4,7 +4,7 @@ import {StatsComponent} from './stats/stats.component';
 import {SpritesComponent} from './sprites.component';
 
 @Component({
-  selector: 'player1',
+  selector: 'player2',
   template:`
   <stats></stats>
   <sprites></sprites>
@@ -12,4 +12,4 @@ import {SpritesComponent} from './sprites.component';
   directives: [StatsComponent]
 })
 
-export class Player1Component {}
+export class Player2Component {}

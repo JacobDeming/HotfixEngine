@@ -8,7 +8,7 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
   selector: 'timer',
   template: `
   <div *ngIf="remaining">
-  <p> Ticks: {{remaining}}</p>
+    <p> Ticks: {{remaining}}</p>
   </div>
   `
 })

@@ -4,7 +4,7 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
 @Component({
   selector: 'stats',
   template:`
-  <div *ngIf="champion" class="container stat-container pull-left">
+  <div *ngIf="champion" class="container stat-container pull-right">
   <div class="row">
     <div class="col-xs-4 col-sm-4">
       <img *ngIf="(champion | async)?.playerClass == 'Highwayman'" class="thumbnail champion-icon" src="./images/champion_highwayman.png" />
@@ -31,11 +31,13 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
 export class StatsComponent{
   champion: FirebaseObjectObservable<any>;
   environment: FirebaseObjectObservable<any>;
+  playerClass: string;
   URL: string;
 
   constructor(af:AngularFire){
     this.URL = window.location.href;
-    this.champion = af.database.object('/'+this.URL.split('/game/')[1]+'/Players/player1');
+    this.playerClass="Highwayman";
+    this.champion = af.database.object('/'+this.URL.split('/game/')[1]+'/Players/player2');
     this.environment = af.database.object('/'+this.URL.split('/game/')[1]+'/Globals/OnOff')
   }
 }
