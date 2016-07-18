@@ -1,5 +1,5 @@
-var Champions = {
-    Elementalist: {
+var Champions = [
+    Elementalist = {
         playerClass: "Elementalist",
         hitpoints: 50,
         currentHitpoints: 50,
@@ -11,7 +11,7 @@ var Champions = {
         action: ""
     },
 
-    Highwayman: {
+    Highwayman = {
         playerClass: "Highwayman",
         hitpoints: 80,
         currentHitpoints: 80,
@@ -23,7 +23,7 @@ var Champions = {
         action: ""
     },
 
-    Paragon: {
+    Paragon = {
         playerClass: "Paragon",
         hitpoints: 120,
         currentHitpoints: 120,
@@ -34,6 +34,6 @@ var Champions = {
         dexterity: 10,
         action: ""
     }
-}
+]
 
 module.exports = Champions;
