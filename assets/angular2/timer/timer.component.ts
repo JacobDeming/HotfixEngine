@@ -7,7 +7,10 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
 @Component({
   selector: 'timer',
   template: `
-  <div *ngIf="remaining">
+  <div *ngIf="ready!=true">
+    <button (click)="readyToPlay()">Ready to Play?</button>
+  </div>
+  <div *ngIf="ready==true">
     <p> Ticks: {{remaining}}</p>
   </div>
   `
@@ -26,6 +29,8 @@ export class TimerComponent{
   timerSubscription: any;
   remaining:number;
   host:boolean;
+  ready:boolean;
+  playersReady:number;
 
   constructor(af:AngularFire){
     this.URL = window.location.href;
@@ -40,13 +45,19 @@ export class TimerComponent{
     const twoPlayers = af.database.object('/'+this.URL.split('/game/')[1]+"/Open",{preserveSnapshot:true});
     twoPlayers.subscribe(snap =>{
       if(snap.val()==true){
+        console.log(snap.val());
         this.host=true;
       }
-      if(snap.val()==false){
+    })
+    const readyToStart = af.database.object('/'+this.URL.split('/game/')[1]+"/Ready",{preserveSnapshot:true});
+    readyToStart.subscribe(snap =>{
+      this.playersReady=snap.val();
+      if(snap.val()==2){
         this.resetClock();
         this.runClock();
       }
     })
+
   }
 
   //Timer functionality
@@ -131,11 +142,19 @@ export class TimerComponent{
   this.firebaseServer.update({Players:{player1:this.playersInfo.player1,player2:this.playersInfo.player2}});
   if(player1.currentHitpoints <= 0){
     console.log("PLAYER 2 WINS!");
+    return;
   }
   if(player2.currentHitpoints <= 0){
     console.log("PLAYER 1 WINS!");
+    return;
   } else {
     this.runClock();
   }
+  }
+
+  readyToPlay(){
+    this.ready=true;
+    console.log(this.playersReady);
+    this.firebaseServer.update({Ready:this.playersReady+1});
   }
 }

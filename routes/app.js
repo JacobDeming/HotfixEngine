@@ -3,7 +3,6 @@ var router = express.Router();
 
 var _ = require('lodash');
 
-var Champions = require('./utils/Champions.js');
 var Globals = require('./utils/Globals.js');
 var HelperMethods = require('./utils/Helpers.js');
 
@@ -21,6 +20,7 @@ router.get('/',function(req,res,next){
 })
 
 router.post('/loggingIn', function(req, res, next) {
+  var Champions = require('./utils/Champions.js');
   var firebaseServer = firebase.database().ref();
   var serverId="";
   var count = 0;
@@ -38,22 +38,24 @@ router.post('/loggingIn', function(req, res, next) {
         }
         if(count>=snapshot.numChildren()){
           console.log("Servers are full! Making a server!");
-          var possibleChamps = Champions;
-          var randomChampionNumber = _.random(0,Champions.length-1);
+          console.log(Champions);
+          var possibleChamps = Champions.slice(0);
+          var randomChampionNumber = _.random(possibleChamps.length-1);
           var randomChampion1 = possibleChamps[randomChampionNumber];
-          possibleChamps.splice(randomChampionNumber);
-          var randomChampion2 = possibleChamps[_.random(0,possibleChamps.length-1)];
-          res.redirect('/game/'+firebaseServer.push({'Players':{'player1':randomChampion1,'player2':randomChampion2},'Globals':Globals,'Open':true,'Timer':5}).toString().split('https://hotfix-f82fc.firebaseio.com/')[1]);
+          possibleChamps.splice(randomChampionNumber,1);
+          var randomChampion2 = possibleChamps[_.random(possibleChamps.length-1)];
+          res.redirect('/game/'+firebaseServer.push({'Players':{'player1':randomChampion1,'player2':randomChampion2},'Globals':Globals,'Open':true,'Timer':5,'Ready':0}).toString().split('https://hotfix-f82fc.firebaseio.com/')[1]);
         }
       })
     } else {
       console.log("No servers! Making a new one!");
-      var possibleChamps = Champions;
-      var randomChampionNumber = _.random(0,possibleChamps.length-1);
+      console.log(Champions);
+      var possibleChamps = Champions.slice(0);
+      var randomChampionNumber = _.random(possibleChamps.length-1);
       var randomChampion1 = possibleChamps[randomChampionNumber];
-      possibleChamps.splice(randomChampionNumber);
-      var randomChampion2 = possibleChamps[_.random(0,possibleChamps.length-1)];
-      res.redirect('/game/'+firebaseServer.push({'Players':{'player1':randomChampion1,'player2':randomChampion2},'Globals':Globals,'Open':true,'Timer':5}).toString().split('https://hotfix-f82fc.firebaseio.com/')[1]);
+      possibleChamps.splice(randomChampionNumber,1);
+      var randomChampion2 = possibleChamps[_.random(possibleChamps.length-1)];
+      res.redirect('/game/'+firebaseServer.push({'Players':{'player1':randomChampion1,'player2':randomChampion2},'Globals':Globals,'Open':true,'Timer':5,'Ready':0}).toString().split('https://hotfix-f82fc.firebaseio.com/')[1]);
     }
   })
 });
