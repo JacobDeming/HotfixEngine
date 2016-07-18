@@ -309,7 +309,7 @@ export class EnvironmentComponent {
       this.playersSnapshot.player2.specialDefense = Math.floor((7 + aether + chaos) / order);
     }
     this.playersSnapshot.player1.action = this.AISelectAction(this.playersSnapshot.player1,this.playersSnapshot.player2);
-    this.playersSnapshot.player2.action = this.AISelectAction(this.playersSnapshot.player1,this.playersSnapshot.player2);
+    this.playersSnapshot.player2.action = this.AISelectAction(this.playersSnapshot.player2,this.playersSnapshot.player1);
     this.players.update(this.playersSnapshot);
   }
 
