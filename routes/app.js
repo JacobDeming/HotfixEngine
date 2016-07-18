@@ -39,20 +39,20 @@ router.post('/loggingIn', function(req, res, next) {
         if(count>=snapshot.numChildren()){
           console.log("Servers are full! Making a server!");
           var possibleChamps = Champions;
-          var randomChampionNumber = _.random(0,Champions.length);
+          var randomChampionNumber = _.random(0,Champions.length-1);
           var randomChampion1 = possibleChamps[randomChampionNumber];
           possibleChamps.splice(randomChampionNumber);
-          var randomChampion2 = possibleChamps[_.random(0,possibleChamps.length)];
+          var randomChampion2 = possibleChamps[_.random(0,possibleChamps.length-1)];
           res.redirect('/game/'+firebaseServer.push({'Players':{'player1':randomChampion1,'player2':randomChampion2},'Globals':Globals,'Open':true,'Timer':5}).toString().split('https://hotfix-f82fc.firebaseio.com/')[1]);
         }
       })
     } else {
       console.log("No servers! Making a new one!");
       var possibleChamps = Champions;
-      var randomChampionNumber = _.random(0,Champions.length);
+      var randomChampionNumber = _.random(0,possibleChamps.length-1);
       var randomChampion1 = possibleChamps[randomChampionNumber];
       possibleChamps.splice(randomChampionNumber);
-      var randomChampion2 = possibleChamps[_.random(0,possibleChamps.length)];
+      var randomChampion2 = possibleChamps[_.random(0,possibleChamps.length-1)];
       res.redirect('/game/'+firebaseServer.push({'Players':{'player1':randomChampion1,'player2':randomChampion2},'Globals':Globals,'Open':true,'Timer':5}).toString().split('https://hotfix-f82fc.firebaseio.com/')[1]);
     }
   })
