@@ -330,9 +330,6 @@ export class EnvironmentComponent {
             rng += (player.specialAttack - enemy.specialDefense);
         }
     }
-    // if (player.currentHitpoints - (enemy.physicalAttack - player.physicalDefense) <= 0 || player.currentHitpoints - (enemy.specialAttack - player.specialDefense) <= 0) {
-    //     rng = (Math.floor(Math.random()*(80 - 20 + 1) + 20));
-    // }
     if (rng <= 33) {
         return "strike";
     }
