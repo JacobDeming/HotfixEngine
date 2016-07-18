@@ -1,4 +1,4 @@
-import {Component,OnInit,OnChanges} from '@angular/core';
+import {Component} from '@angular/core';
 import {Input,Output,EventEmitter} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
@@ -13,7 +13,7 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
   `
 })
 
-export class TimerComponent implements OnInit{
+export class TimerComponent{
   firebaseClock:FirebaseObjectObservable<any>;
   firebaseServer:FirebaseObjectObservable<any>;
   URL:string;
@@ -21,17 +21,22 @@ export class TimerComponent implements OnInit{
     duration:number,
     ticks:number
   };
+  playersInfo:any;
+  environmentInfo:any;
   timerSubscription: any;
   remaining:number;
   host:boolean;
 
   constructor(af:AngularFire){
     this.URL = window.location.href;
-    this.firebaseServer = af.database.object('/'+this.URL.split('/game/')[1]);
+    this.firebaseServer = af.database.object('/'+this.URL.split('/game/')[1],{preserveSnapshot:true});
+      this.firebaseServer.subscribe(snap =>{
+        this.playersInfo = snap.val().Players;
+        this.environmentInfo = snap.val().Globals.Environment;
+      });
     this.firebaseClock = af.database.object('/'+this.URL.split('/game/')[1]+"/Timer",{preserveSnapshot:true});
     this.firebaseClock.subscribe(snap =>{
-      this.remaining=snap.val();
-    })
+      this.remaining=snap.val();})
     const twoPlayers = af.database.object('/'+this.URL.split('/game/')[1]+"/Open",{preserveSnapshot:true});
     twoPlayers.subscribe(snap =>{
       if(snap.val()==true){
@@ -44,8 +49,10 @@ export class TimerComponent implements OnInit{
     })
   }
 
+  //Timer functionality
   resetClock(){
     if(this.host==true){
+      this.AIselect();
       this.gameClock = { 
         duration:5,
         ticks:0
@@ -73,6 +80,14 @@ export class TimerComponent implements OnInit{
           this.stopClock();
         }
       })
+    }
+  }
+
+  //Gameplay functionality
+  AIselect(){
+    if(this.host==true){
+      console.log(this.playersInfo);
+      console.log(this.environmentInfo);
     }
   }
 }

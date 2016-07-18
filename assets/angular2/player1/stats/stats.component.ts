@@ -35,7 +35,7 @@ export class StatsComponent{
   constructor(af:AngularFire){
     this.URL = window.location.href;
     this.playerClass="Highwayman";
-    this.champion = af.database.object('/'+this.URL.split('/game/')[1]+'/Players/'+this.playerClass);
+    this.champion = af.database.object('/'+this.URL.split('/game/')[1]+'/Players/player1');
     this.environment = af.database.object('/'+this.URL.split('/game/')[1]+'/Globals/OnOff')
   }
 }
