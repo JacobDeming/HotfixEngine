@@ -97,7 +97,7 @@ router.post('/add',function(req,res){
       }
       console.log(err.code);
     } else {
-      res.redirect('/');
+      res.json({redirect:true});
     }
   })
 })
