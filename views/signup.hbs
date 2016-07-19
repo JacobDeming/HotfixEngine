@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hotfix Engine: Sign-Up</title>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<form>
+  <input type="text" class="username" placeholder="username">
+  <input type="password" class="password" placeholder="password">
+  <button class="send">Sign-Up</button>
+</form>
+
+<h4 class="failure"></h4>
+
+<script type="text/javascript">
+  $(".send").click(function(e){
+    e.preventDefault();
+    var username = $(".username").val();
+    var password = $(".password").val();
+    $.post("/add",{username:username,password:password}, function(response){
+      console.log(response);
+      if(response.failure==11000){
+        $(".username").val("");
+        $(".password").val("");
+        $(".failure").text("That username has already been taken");
+      }
+    })
+  })
+</script>
+</html>
