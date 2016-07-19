@@ -55,7 +55,7 @@ export class TimerComponent{
     const readyToStart = af.database.object('/'+this.URL.split('/game/')[1]+"/Ready",{preserveSnapshot:true});
     readyToStart.subscribe(snap =>{
       this.playersReady=snap.val();
-      if(snap.val()==2){
+      if(snap.val()>=2){
         this.resetClock();
         this.runClock();
       }

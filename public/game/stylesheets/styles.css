@@ -89,6 +89,11 @@ body {
   box-shadow:         0px 0px 2px #ccc;
 }
 
+.playerName {
+  font-family: 'VT323';
+  font-size-adjust: 20px;
+}
+
 .champion-icon {
   display: block;
   background-color: transparent;
