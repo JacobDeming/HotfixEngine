@@ -12,6 +12,7 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
       <img *ngIf="(champion | async)?.playerClass == 'Elementalist'" class="thumbnail champion-icon" src="###" />
     </div>
     <div class="col-xs-8 col-sm-8">
+      <h3 class="playerName">{{(champion | async)?.playerName}}</h3>
       <h4>{{(champion | async)?.playerClass}}</h4>
     </div>
   </div>

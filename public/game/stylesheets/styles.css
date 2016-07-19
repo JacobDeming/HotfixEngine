@@ -81,12 +81,17 @@ body {
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   border: 30px solid transparent;
-/*  border: 1px solid white;*/
+  border: 1px solid white;
   display: inline-block;
   width: 350px;
   -webkit-box-shadow: 0px 0px 2px #ccc;
   -moz-box-shadow:    0px 0px 2px #ccc;
   box-shadow:         0px 0px 2px #ccc;
+}
+
+.playerName {
+  font-family: 'VT323';
+  font-size-adjust: 20px;
 }
 
 .champion-icon {
@@ -121,6 +126,16 @@ body {
 .sprites-container {
   clear: both;
   margin: 40px;
+}
+
+.time-text {
+  font-family: 'VT323';
+  font-size:50px;
+}
+
+.clock {
+  font-family: 'VT323';
+  font-size:100px;
 }
 
 /* /game */
