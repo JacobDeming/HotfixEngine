@@ -10,10 +10,12 @@ import {EnvironmentComponent} from './environment/environment.component';
   selector: 'my-app',
   template:`
   <navbar></navbar>
-  <div class="game-container">
-    <timer></timer>
-    <player1></player1>
-    <player2></player2>
+  <div class="game-container container">
+    <div class="row">
+      <player1 class="col-lg-4"></player1>
+      <timer class="col-lg-4"></timer>
+      <player2 class="col-lg-4"></player2>
+    </div>
   </div>
   <div class="env-container">
     <environment></environment>

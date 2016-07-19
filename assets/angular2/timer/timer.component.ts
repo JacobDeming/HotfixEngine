@@ -7,11 +7,14 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
 @Component({
   selector: 'timer',
   template: `
-  <div *ngIf="ready!=true">
-    <button (click)="readyToPlay()">Ready to Play?</button>
-  </div>
-  <div *ngIf="ready==true">
-    <p> Ticks: {{remaining}}</p>
+  <div class="center-block">
+    <div *ngIf="ready!=true">
+      <button class="center-block btn btn-primary" (click)="readyToPlay()">Ready to Play?</button>
+    </div>
+    <div *ngIf="ready==true">
+      <p class="time-text text-center">TIME REMAINING</p>
+      <p class="clock text-center">{{remaining}}</p>
+    </div>
   </div>
   `
 })

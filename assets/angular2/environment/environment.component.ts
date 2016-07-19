@@ -283,10 +283,10 @@ export class EnvironmentComponent {
       this.playersSnapshot.player1.dexterity = Math.floor(3 * chaos);
     }
     if(this.playersSnapshot.player1.playerClass == "Paragon"){
-      this.playersSnapshot.player1.physicalAttack = Math.floor(order * material + 8);
+      this.playersSnapshot.player1.physicalAttack = Math.floor(order * 8);
       this.playersSnapshot.player1.physicalDefense = Math.floor(((8 * material) + order) / (chaos * 2));
-      this.playersSnapshot.player1.specialAttack = Math.floor(chaos * aether + 6);
-      this.playersSnapshot.player1.specialDefense = Math.floor((7 + aether + chaos) / order);
+      this.playersSnapshot.player1.specialAttack = Math.floor((aether * 6)/material);
+      this.playersSnapshot.player1.specialDefense = Math.floor(((7 * material) + chaos) / (order*2));
     }
     if(this.playersSnapshot.player2.playerClass == 'Highwayman'){
       this.playersSnapshot.player2.physicalAttack = Math.floor((chaos * material) + 10);
@@ -303,10 +303,10 @@ export class EnvironmentComponent {
       this.playersSnapshot.player2.dexterity = Math.floor(3 * chaos);
     }
     if(this.playersSnapshot.player2.playerClass == "Paragon"){
-      this.playersSnapshot.player2.physicalAttack = Math.floor(order * material + 8);
+      this.playersSnapshot.player2.physicalAttack = Math.floor(order * 8);
       this.playersSnapshot.player2.physicalDefense = Math.floor(((8 * material) + order) / (chaos * 2));
-      this.playersSnapshot.player2.specialAttack = Math.floor(chaos * aether + 6);
-      this.playersSnapshot.player2.specialDefense = Math.floor((7 + aether + chaos) / order);
+      this.playersSnapshot.player2.specialAttack = Math.floor((aether * 6)/material);
+      this.playersSnapshot.player1.specialDefense = Math.floor(((7 * material) + chaos) / (order*2));
     }
     this.playersSnapshot.player1.action = this.AISelectAction(this.playersSnapshot.player1,this.playersSnapshot.player2);
     this.playersSnapshot.player2.action = this.AISelectAction(this.playersSnapshot.player2,this.playersSnapshot.player1);
