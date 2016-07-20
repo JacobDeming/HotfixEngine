@@ -2,7 +2,7 @@
   "_args": [
     [
       "es6-shim@^0.35.0",
-      "C:\\Users\\jacob\\Documents\\School\\Programming\\HotfixRework\\hotfixengine"
+      "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine"
     ]
   ],
   "_from": "es6-shim@>=0.35.0 <0.36.0",
@@ -36,7 +36,7 @@
   "_shasum": "a23524009005b031ab4a352ac196dfdfd1144ab7",
   "_shrinkwrap": null,
   "_spec": "es6-shim@^0.35.0",
-  "_where": "C:\\Users\\jacob\\Documents\\School\\Programming\\HotfixRework\\hotfixengine",
+  "_where": "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine",
   "author": {
     "name": "Paul Miller",
     "url": "http://paulmillr.com"

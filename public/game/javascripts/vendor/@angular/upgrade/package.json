@@ -2,7 +2,7 @@
   "_args": [
     [
       "@angular/upgrade@2.0.0-rc.2",
-      "C:\\Users\\jacob\\Documents\\School\\Programming\\HotfixRework\\hotfixengine"
+      "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine"
     ]
   ],
   "_from": "@angular/upgrade@2.0.0-rc.2",
@@ -36,7 +36,7 @@
   "_shasum": "49855fe9b27a7221b15066730e4ff0a4a04438a0",
   "_shrinkwrap": null,
   "_spec": "@angular/upgrade@2.0.0-rc.2",
-  "_where": "C:\\Users\\jacob\\Documents\\School\\Programming\\HotfixRework\\hotfixengine",
+  "_where": "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine",
   "author": {
     "name": "angular"
   },

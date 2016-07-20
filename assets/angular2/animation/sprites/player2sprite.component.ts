@@ -5,13 +5,6 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
   selector: 'player2sprite',
   template: `
     <canvas id="player2Animation"></canvas>
-    <div class="buttons">
-      <button type="button" (click)="animateStanding()">Standing</button>
-      <button type="button" (click)="animateAttack()">Attack</button>
-      <button type="button" id="magic">Magic</button>
-      <button type="button" id="damage">Damage</button>
-      <button type="button" id="defeat">Defeated</button>
-    </div>
     `
 })
 

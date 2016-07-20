@@ -1,11 +1,11 @@
 {
   "_args": [
     [
-      "angularfire2",
-      "C:\\Users\\jacob\\Documents\\School\\Programming\\HotfixRework\\hotfixengine"
+      "angularfire2@^2.0.0-beta.2",
+      "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine"
     ]
   ],
-  "_from": "angularfire2@latest",
+  "_from": "angularfire2@>=2.0.0-beta.2 <3.0.0",
   "_id": "angularfire2@2.0.0-beta.2",
   "_inCache": true,
   "_installable": true,
@@ -23,11 +23,11 @@
   "_phantomChildren": {},
   "_requested": {
     "name": "angularfire2",
-    "raw": "angularfire2",
-    "rawSpec": "",
+    "raw": "angularfire2@^2.0.0-beta.2",
+    "rawSpec": "^2.0.0-beta.2",
     "scope": null,
-    "spec": "latest",
-    "type": "tag"
+    "spec": ">=2.0.0-beta.2 <3.0.0",
+    "type": "range"
   },
   "_requiredBy": [
     "/"
@@ -35,8 +35,8 @@
   "_resolved": "https://registry.npmjs.org/angularfire2/-/angularfire2-2.0.0-beta.2.tgz",
   "_shasum": "1455af597a789e6da206a6eefff87851dddb11e7",
   "_shrinkwrap": null,
-  "_spec": "angularfire2",
-  "_where": "C:\\Users\\jacob\\Documents\\School\\Programming\\HotfixRework\\hotfixengine",
+  "_spec": "angularfire2@^2.0.0-beta.2",
+  "_where": "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine",
   "author": {
     "name": "jeffbcross"
   },
