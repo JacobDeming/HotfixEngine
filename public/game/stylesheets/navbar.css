@@ -1,0 +1,44 @@
+.navbar {
+  background-color: rgba(0, 0, 0, 0.25);
+  border: 1px solid transparent;
+}
+
+.navbar-right .navbar-icon {
+  display: block;
+  margin: 0;
+  padding: 14px;
+  transition: all .4s;
+}
+
+.navbar-right .navbar-icon i {
+  color: #808080;
+  font-size: 24px;
+  margin: 0;
+  min-width: 24px;
+  max-width: 24px;
+}
+
+.navbar-header .navbar-brand:hover, .navbar-right .navbar-icon:hover i, .navbar-right .navbar-icon:hover span {
+  color: #ffffff;
+  transition: all .2s;
+}
+
+@media (min-width: 769px) {
+  .navbar-right .navbar-icon i {
+    display: all;
+  }
+  .navbar-right .navbar-icon span {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-right .navbar-icon i {
+    display: none;
+  }
+  .navbar-right .navbar-icon span {
+    display: all;
+  }
+}
+
+/* /navbar */

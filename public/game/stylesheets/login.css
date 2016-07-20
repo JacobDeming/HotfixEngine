@@ -1,6 +1,19 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
 body {
-  margin: 0;
+  margin-bottom: 60px;
   padding: 0;
+  color: #333;
+}
+.container {
+  width: auto;
+  max-width: 680px;
+  padding: 0 15px;
+}
+.container .text-muted {
+  margin: 20px 0;
 }
 .contentBlock {
   background: #fff;
@@ -10,7 +23,7 @@ body {
   width: 600px;
   min-width: 600px;
   max-width: 600px;
-  word-wrap: break-word;
+  top: 32px;
 }
 .clearDiv {
   clear: both;
