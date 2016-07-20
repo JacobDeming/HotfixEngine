@@ -1,14 +1,94 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Hotfix Game</title>
+  <title>Hotfix Game : Log in</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- Google Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Ubuntu+Mono|Bangers' rel='stylesheet' type='text/css'>
+
+  <!-- Font Awesome -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+
+  <!-- *** Custom CSS -->
+  <link rel="stylesheet" href="./game/stylesheets/styles.css">
+  <link rel="stylesheet" href="./game/stylesheets/login.css">
+  <link rel="stylesheet" href="./game/stylesheets/navbar.css">
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
 </head>
 <body>
 
-  <form action="LoggingIn" method="post">
-    Username: <input type="text" name="username"><br>
-    <input type="submit" name="Submit"><br>
-  </form>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand fancy bolder" href="#">Hotfix Engine</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a class="navbar-icon" href="#"><i class="fa fa-book" aria-hidden="true"></i> 
+            <span>How to Play</span></a></li>
+          <li><a class="navbar-icon" href="#"><i class="fa fa-trophy" aria-hidden="true"></i>
+            <span>Leaderboard</span></a></li>
+          <li><a class="navbar-icon" href="#"><i class="fa fa-cogs" aria-hidden="true"></i>
+            <span>Settings</span></a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <div class="container contentBlock">
+    <h2 class="header" id="signInHeader">Hotfix Game</h2>
+    <div class="regBox">
+      <div class="signInBox">
+        <h4>Returning player</h4>
+        <form class="active" method="post" action="LoggingIn">
+          <h3 class="subHead">Sign In</h3>
+          <div class="userName">
+            <input tabindex="1" name="username" type="text" maxlength="70" value="" class="logintextbox" placeholder="Username" /></div>
+          <div class="userPassword">
+            <input tabindex="2" name="password" id="password" type="password" maxlength="128" value="" class="logintextbox" placeholder="Password" /></div>
+          <div class="footer">
+            <div class="createNewButton">
+              <a class="createNewLink" href="/signup">
+                Create new account</a>
+            </div>
+            <div class="signInButton">
+              <div class="actionLink right">
+                <input class="buttonForm" id="checkSubmit" type="submit" value="Sign In">
+              </div>
+            </div>
+            <div class="clearDiv"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="env-container">
+    <div class="container">
+      <p class="text-muted">Place sticky footer content here.</p>
+    </div>
+  </footer>
 
 </body>
 </html>
+
+
