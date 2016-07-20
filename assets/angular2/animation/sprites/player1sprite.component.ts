@@ -4,8 +4,8 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
 @Component({
   selector: 'player1sprite',
   template: `
-    <div class="col-md-1 col-md-offset-5">
-      <canvas id="player1Animation"></canvas>
+    <canvas id="player1Animation"></canvas>
+    <div class="buttons">
       <button type="button" (click)="animateStanding()">Standing</button>
       <button type="button" (click)="animateAttack()">Attack</button>
       <button type="button" id="magic">Magic</button>
