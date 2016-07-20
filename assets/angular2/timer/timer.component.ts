@@ -11,7 +11,7 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
     <div *ngIf="ready!=true">
       <button class="center-block btn btn-primary" (click)="readyToPlay()">Ready to Play?</button>
     </div>
-    <div *ngIf="ready==true">
+    <div *ngIf="ready==true && winner==null">
       <p class="time-text text-center">ROUND ENDS IN...</p>
       <p class="clock text-center">{{remaining}}</p>
       <p class="text-center time-text">LAST ROUND</p>
