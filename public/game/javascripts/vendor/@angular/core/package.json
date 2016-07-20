@@ -2,7 +2,7 @@
   "_args": [
     [
       "@angular/core@2.0.0-rc.2",
-      "C:\\Users\\jacob\\Documents\\School\\Programming\\HotfixRework\\hotfixengine"
+      "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine"
     ]
   ],
   "_from": "@angular/core@2.0.0-rc.2",
@@ -36,7 +36,7 @@
   "_shasum": "a5761cdaf1c65b0c726b34e8bc1bb5dd692086c3",
   "_shrinkwrap": null,
   "_spec": "@angular/core@2.0.0-rc.2",
-  "_where": "C:\\Users\\jacob\\Documents\\School\\Programming\\HotfixRework\\hotfixengine",
+  "_where": "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine",
   "author": {
     "name": "angular"
   },

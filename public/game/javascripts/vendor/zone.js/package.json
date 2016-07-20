@@ -2,7 +2,7 @@
   "_args": [
     [
       "zone.js@^0.6.6",
-      "C:\\Users\\jacob\\Documents\\School\\Programming\\HotfixRework\\hotfixengine"
+      "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine"
     ]
   ],
   "_from": "zone.js@>=0.6.6 <0.7.0",
@@ -36,7 +36,7 @@
   "_shasum": "346aa83f4e5093fb98b31c241f4daed9290accee",
   "_shrinkwrap": null,
   "_spec": "zone.js@^0.6.6",
-  "_where": "C:\\Users\\jacob\\Documents\\School\\Programming\\HotfixRework\\hotfixengine",
+  "_where": "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine",
   "author": {
     "name": "Brian Ford"
   },

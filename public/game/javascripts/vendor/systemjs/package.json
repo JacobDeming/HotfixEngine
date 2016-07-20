@@ -2,7 +2,7 @@
   "_args": [
     [
       "systemjs@0.19.27",
-      "C:\\Users\\jacob\\Documents\\School\\Programming\\HotfixRework\\hotfixengine"
+      "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine"
     ]
   ],
   "_from": "systemjs@0.19.27",
@@ -36,7 +36,7 @@
   "_shasum": "f1740d565ce64371ac0de7072a4d1e5471ba7ba2",
   "_shrinkwrap": null,
   "_spec": "systemjs@0.19.27",
-  "_where": "C:\\Users\\jacob\\Documents\\School\\Programming\\HotfixRework\\hotfixengine",
+  "_where": "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine",
   "author": {
     "name": "Guy Bedford"
   },

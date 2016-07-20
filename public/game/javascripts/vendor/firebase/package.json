@@ -1,11 +1,11 @@
 {
   "_args": [
     [
-      "firebase",
-      "C:\\Users\\jacob\\Documents\\School\\Programming\\HotfixRework\\hotfixengine"
+      "firebase@^3.2.0",
+      "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine"
     ]
   ],
-  "_from": "firebase@latest",
+  "_from": "firebase@>=3.2.0 <4.0.0",
   "_id": "firebase@3.2.0",
   "_inCache": true,
   "_installable": true,
@@ -23,11 +23,11 @@
   "_phantomChildren": {},
   "_requested": {
     "name": "firebase",
-    "raw": "firebase",
-    "rawSpec": "",
+    "raw": "firebase@^3.2.0",
+    "rawSpec": "^3.2.0",
     "scope": null,
-    "spec": "latest",
-    "type": "tag"
+    "spec": ">=3.2.0 <4.0.0",
+    "type": "range"
   },
   "_requiredBy": [
     "/"
@@ -223,8 +223,8 @@
     "name": "firebase",
     "version": "3.2.0"
   },
-  "_spec": "firebase",
-  "_where": "C:\\Users\\jacob\\Documents\\School\\Programming\\HotfixRework\\hotfixengine",
+  "_spec": "firebase@^3.2.0",
+  "_where": "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine",
   "author": {
     "email": "firebase-support@google.com",
     "name": "Firebase",

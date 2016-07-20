@@ -9,7 +9,7 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
     <div class="col-xs-4 col-sm-4">
       <img *ngIf="(champion | async)?.playerClass == 'Highwayman'" class="thumbnail champion-icon" src="./images/champion_highwayman.png" />
       <img *ngIf="(champion | async)?.playerClass == 'Paragon'" class="thumbnail champion-icon" src="./images/champion_paragon.png" />
-      <img *ngIf="(champion | async)?.playerClass == 'Elementalist'" class="thumbnail champion-icon" src="###" />
+      <img *ngIf="(champion | async)?.playerClass == 'Elementalist'" class="thumbnail champion-icon" src="./images/champion_elementalist.png" />
     </div>
     <div class="col-xs-8 col-sm-8">
       <h3 class="playerName">{{(champion | async)?.playerName}}</h3>
