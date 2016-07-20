@@ -84,7 +84,6 @@ export class Player2SpriteComponent {
       character.update();
       character.render();
     }
-    console.log("Got in here");
     if(this.class=="Paragon"){
       // Get canvas
       canvas = document.getElementById("player2Animation");
@@ -104,8 +103,6 @@ export class Player2SpriteComponent {
         ticksPerFrame: 4
       });
       // Load sprite sheet
-      console.log(characterImage);
-      console.log(character);
       characterImage.addEventListener("load", gameLoop);
       characterImage.src = "images/sprites/player-2/gohan/gohan-standing.png";
     }
@@ -131,7 +128,7 @@ export class Player2SpriteComponent {
     }
     if(this.class=="Highwayman"){
       canvas = document.getElementById("player2Animation");
-      canvas.width = 125;
+      canvas.width = 95;
       canvas.height = 162;
       
       // Create sprite sheet
@@ -143,7 +140,7 @@ export class Player2SpriteComponent {
         width: 292,
         height: 162,
         image: characterImage,
-        numberOfFrames: 2.9,
+        numberOfFrames: 3,
         ticksPerFrame: 5
       });
       

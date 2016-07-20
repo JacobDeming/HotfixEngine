@@ -283,7 +283,7 @@ export class EnvironmentComponent {
       this.playersSnapshot.player1.dexterity = Math.floor(3 * chaos);
     }
     if(this.playersSnapshot.player1.playerClass == "Paragon"){
-      this.playersSnapshot.player1.physicalAttack = Math.floor(order * 8);
+      this.playersSnapshot.player1.physicalAttack = Math.floor((order + material)*2);
       this.playersSnapshot.player1.physicalDefense = Math.floor(((8 * material) + order) / (chaos * 2));
       this.playersSnapshot.player1.specialAttack = Math.floor((aether * 6)/material);
       this.playersSnapshot.player1.specialDefense = Math.floor(((7 * material) + chaos) / (order*2));
@@ -303,7 +303,7 @@ export class EnvironmentComponent {
       this.playersSnapshot.player2.dexterity = Math.floor(3 * chaos);
     }
     if(this.playersSnapshot.player2.playerClass == "Paragon"){
-      this.playersSnapshot.player2.physicalAttack = Math.floor(order * 8);
+      this.playersSnapshot.player2.physicalAttack = Math.floor((order + material)*2);
       this.playersSnapshot.player2.physicalDefense = Math.floor(((8 * material) + order) / (chaos * 2));
       this.playersSnapshot.player2.specialAttack = Math.floor((aether * 6)/material);
       this.playersSnapshot.player1.specialDefense = Math.floor(((7 * material) + chaos) / (order*2));
