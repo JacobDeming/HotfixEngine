@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
 
 @Component({
   selector: 'player2sprite',
