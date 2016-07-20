@@ -8,16 +8,19 @@ import {Player2SpriteComponent} from './sprites/player2sprite.component';
 @Component({
   selector:'animation',
   template:`
-  <div class="row">
-    <div class="col-lg-10 col-lg-offset-1 WeatherZone">
-      <player1sprite style="display:inline"></player1sprite>
-      <player2sprite style="display:inline"></player2sprite>
+  <div id="weather-zone"></div>
+  <div class="sprites-container">
+    <div class="player1">
+      <player1sprite></player1sprite>
+    </div>
+    <div class="player2">
+      <player2sprite></player2sprite>
     </div>
   </div>
   `,
   directives:[Player1SpriteComponent,Player2SpriteComponent]
 })
 
-export class AnimationComponent{
+export class AnimationComponent {
   
 }
