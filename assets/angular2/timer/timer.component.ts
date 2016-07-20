@@ -44,23 +44,15 @@ export class TimerComponent{
       });
     this.firebaseClock = af.database.object('/'+this.URL.split('/game/')[1]+"/Timer",{preserveSnapshot:true});
     this.firebaseClock.subscribe(snap =>{
-      this.remaining=snap.val();})
-    const twoPlayers = af.database.object('/'+this.URL.split('/game/')[1]+"/Open",{preserveSnapshot:true});
-    twoPlayers.subscribe(snap =>{
-      if(snap.val()==true){
-        console.log(snap.val());
-        this.host=true;
-      }
-    })
+      this.remaining=snap.val();});
     const readyToStart = af.database.object('/'+this.URL.split('/game/')[1]+"/Ready",{preserveSnapshot:true});
     readyToStart.subscribe(snap =>{
-      this.playersReady=snap.val();
+      this.playersReady = snap.val();
       if(snap.val()>=2){
         this.resetClock();
         this.runClock();
       }
     })
-
   }
 
   //Timer functionality
@@ -157,6 +149,12 @@ export class TimerComponent{
 
   readyToPlay(){
     this.ready=true;
+    if(this.playersReady === 0){
+      this.host = true;
+    } else {
+      this.host = false;
+    }
+    console.log(this.host);
     console.log(this.playersReady);
     this.firebaseServer.update({Ready:this.playersReady+1});
   }

@@ -25,6 +25,8 @@
         $(".username").val("");
         $(".password").val("");
         $(".failure").text("That username has already been taken");
+      } else {
+        window.location.href = document.location.origin;
       }
     })
   })
