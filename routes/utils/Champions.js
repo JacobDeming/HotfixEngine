@@ -8,7 +8,8 @@ var Champions = [
         specialAttack: 12,
         specialDefense: 10,
         dexterity: 3,
-        action: ""
+        action: "",
+        lastRound: ""
     },
 
     Highwayman = {
@@ -20,7 +21,8 @@ var Champions = [
         specialAttack: 2,
         specialDefense: 3,
         dexterity: 10,
-        action: ""
+        action: "",
+        lastRound: ""
     },
 
     Paragon = {
@@ -32,7 +34,8 @@ var Champions = [
         specialAttack: 6,
         specialDefense: 7,
         dexterity: 10,
-        action: ""
+        action: "",
+        lastRound: ""
     }
 ]
 

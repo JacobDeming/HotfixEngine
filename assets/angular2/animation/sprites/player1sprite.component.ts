@@ -84,7 +84,6 @@ export class Player1SpriteComponent {
       character.update();
       character.render();
     }
-    console.log("Got in here");
     if(this.class=="Paragon"){
       // Get canvas
       canvas = document.getElementById("player1Animation");
@@ -104,8 +103,6 @@ export class Player1SpriteComponent {
         ticksPerFrame: 4
       });
       // Load sprite sheet
-      console.log(characterImage);
-      console.log(character);
       characterImage.addEventListener("load", gameLoop);
       characterImage.src = "images/sprites/player-1/gohan/gohan-standing.png";
     }
