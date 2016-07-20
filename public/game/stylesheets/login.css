@@ -141,3 +141,9 @@ input.logintextbox {
   font-size: 12px;
   position: absolute;
 }
+#failure {
+  color:red;
+  margin-left:15px;
+  text-transform:uppercase;
+  overflow-y:hidden;
+}
