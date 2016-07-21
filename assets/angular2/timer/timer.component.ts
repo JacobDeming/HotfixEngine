@@ -54,7 +54,7 @@ export class TimerComponent{
         this.playersInfo = snap.val().Players;
         this.environmentInfo = snap.val().Globals.Environment;
         if (this.playersInfo.player1.currentHitpoints <= 0){
-          this.winner = this.playersInfo.player2.playerClass+ "IS THE WINNER!";
+          this.winner = this.playersInfo.player2.playerClass+" IS THE WINNER!";
         }
         if (this.playersInfo.player2.currentHitpoints <= 0){
           this.winner = this.playersInfo.player1.playerClass+" IS THE WINNER!";

@@ -252,11 +252,11 @@ export class EnvironmentComponent {
 
   changeChampionStats(aether,material,chaos,order){
     if(this.playersSnapshot.player1.playerClass == 'Highwayman'){
-      this.playersSnapshot.player1.physicalAttack = Math.floor((chaos * material) + 10);
-      this.playersSnapshot.player1.physicalDefense = Math.floor(5 + material);
+      this.playersSnapshot.player1.physicalAttack = Math.floor((chaos * material) + 10 - (aether*1.5));
+      this.playersSnapshot.player1.physicalDefense = Math.floor(5 + order);
       this.playersSnapshot.player1.specialAttack = Math.floor(2 + (2 * order));
       this.playersSnapshot.player1.specialDefense = Math.floor(3 + chaos + aether);
-      this.playersSnapshot.player1.dexterity = Math.floor(((10 * aether) + order) / material);
+      this.playersSnapshot.player1.dexterity = Math.floor(((10 * aether) + chaos) / material);
     }
     if(this.playersSnapshot.player1.playerClass == 'Elementalist'){
       this.playersSnapshot.player1.physicalAttack = Math.floor(4 + aether + material);
@@ -266,17 +266,17 @@ export class EnvironmentComponent {
       this.playersSnapshot.player1.dexterity = Math.floor(3 * chaos);
     }
     if(this.playersSnapshot.player1.playerClass == "Paragon"){
-      this.playersSnapshot.player1.physicalAttack = Math.floor((order + material)*2);
-      this.playersSnapshot.player1.physicalDefense = Math.floor(((8 * material) + order) / (chaos * 2));
+      this.playersSnapshot.player1.physicalAttack = Math.floor(((order + material)*3)/(aether));
+      this.playersSnapshot.player1.physicalDefense = Math.floor(((8 * material) + order) / chaos);
       this.playersSnapshot.player1.specialAttack = Math.floor((aether * 6)/material);
       this.playersSnapshot.player1.specialDefense = Math.floor(((7 * material) + chaos) / (order*2));
     }
     if(this.playersSnapshot.player2.playerClass == 'Highwayman'){
-      this.playersSnapshot.player2.physicalAttack = Math.floor((chaos * material) + 10);
-      this.playersSnapshot.player2.physicalDefense = Math.floor(5 + material);
+      this.playersSnapshot.player2.physicalAttack = Math.floor((chaos * material) + 10 - (aether*1.5));
+      this.playersSnapshot.player2.physicalDefense = Math.floor(5 + order);
       this.playersSnapshot.player2.specialAttack = Math.floor(2 + (2 * order));
       this.playersSnapshot.player2.specialDefense = Math.floor(3 + chaos + aether);
-      this.playersSnapshot.player2.dexterity = Math.floor(((10 * aether) + order) / material);
+      this.playersSnapshot.player2.dexterity = Math.floor(((10 * aether) + chaos) / material);
     }
     if(this.playersSnapshot.player2.playerClass == 'Elementalist'){
       this.playersSnapshot.player2.physicalAttack = Math.floor(4 + aether + material);
@@ -286,8 +286,8 @@ export class EnvironmentComponent {
       this.playersSnapshot.player2.dexterity = Math.floor(3 * chaos);
     }
     if(this.playersSnapshot.player2.playerClass == "Paragon"){
-      this.playersSnapshot.player2.physicalAttack = Math.floor((order + material)*2);
-      this.playersSnapshot.player2.physicalDefense = Math.floor(((8 * material) + order) / (chaos * 2));
+      this.playersSnapshot.player2.physicalAttack = Math.floor(((order + material)*3)/(aether));
+      this.playersSnapshot.player2.physicalDefense = Math.floor(((8 * material) + order) / chaos);
       this.playersSnapshot.player2.specialAttack = Math.floor((aether * 6)/material);
       this.playersSnapshot.player1.specialDefense = Math.floor(((7 * material) + chaos) / (order*2));
     }
@@ -312,6 +312,11 @@ export class EnvironmentComponent {
         } else {
             rng += (player.specialAttack - enemy.specialDefense);
         }
+    }
+    if (player.currentHitpoints <= (player.hitpoints/3)){
+      if ((enemy.physicalAttack - (player.physicalDefense*2) < 0) || (enemy.specialAttack - (player.specialDefense*2))){
+          rng = (Math.floor(Math.random()*(75 - 25 + 1) + 25));
+      }
     }
     if (rng <= 33) {
         return "strike";
