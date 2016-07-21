@@ -16,18 +16,13 @@ export class Player1SpriteComponent{
   URL:string;
   action:string;
   class:string;
-  hitpoints:number;
 
   constructor(af:AngularFire){
     this.URL = window.location.href;
     this.timerObservable = af.database.object('/'+this.URL.split('/game/')[1]+'/Timer',{preserveSnapshot:true});
     this.timerObservable.subscribe(snap =>{
-      if(snap.val()==0){
-        if (this.hitpoints > 0) {
-          this.animate(this.class,this.action);
-        } else {
-          this.animateDefeat(this.class);
-        }
+      if (snap.val()==0) {
+        this.animate(this.class,this.action);
       } else {
         this.animateStance(this.class);
       }
@@ -36,7 +31,10 @@ export class Player1SpriteComponent{
     this.playerObservable.subscribe(snap =>{
       this.action=snap.val().action;
       this.class=snap.val().playerClass;
-      this.hitpoints=snap.val().currentHitpoints;
+      /* check if still alive */
+      if (snap.val().currentHitpoints < 0) {
+        this.animateDefeat(this.class);
+      }
     })
   }
 
@@ -258,7 +256,7 @@ export class Player1SpriteComponent{
     switch(playerClass){
       case("Elementalist"):
         // Get canvas
-        canvas.width = 167;
+        canvas.width = 162;
         canvas.height = 162;
         // Create sprite sheet
         characterImage = new Image();
