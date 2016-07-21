@@ -5,28 +5,11 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
 @Component({
   selector: 'environment',
   template: `
-  <!--
-  <div *ngIf="snapshot">
-    <p>Rain: {{snapshot.rain}}</p>
-    <button (click)="changeEnvironment('rain')">Change Rain</button>
-    <p>Fog: {{snapshot.fog}}</p>
-    <button (click)="changeEnvironment('fog')">Change Fog</button>
-    <p>Lightning: {{snapshot.lightning}}</p>
-    <button (click)="changeEnvironment('lightning')">Change Lightning</button>
-    <p>Sunshine: {{snapshot.sunshine}}</p>
-    <button (click)="changeEnvironment('sunshine')">Change Sunshine</button>
-    <p>Hail: {{snapshot.hail}}</p>
-    <button (click)="changeEnvironment('hail')">Change Hail</button>
-    <p>Wind: {{snapshot.wind}}</p>
-    <button (click)="changeEnvironment('wind')">Change Wind</button>
-  </div>
-  //-->
-
   <div *ngIf="environmentSnapshot" class="container">
     <div class="col-sm-6 pull-left">
       <p>
         To play, press key to turn on/off:<br>
-        [A] FOG; [S] HAIL; [D] LIGHTNING; [F] RAIN; [G] SUNSHINE; [H] WIND.</p>
+        [A] FOG; [S] SNOW; [D] LIGHTNING; [F] RAIN; [G] QUAKE; [H] STORM</p>
     </div>
     <div class="col-sm-6 pull-right envBtns" *ngIf="environment">
       <div class="envBtnWrapper" (click)="toggleBtn('fog')" [ngSwitch]="environmentSnapshot.fog">
@@ -36,12 +19,12 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
           <img src="./images/env_btn/env_fog.png"></div>
         <p class="imgDescription">Fog</p>
       </div>
-      <div class="envBtnWrapper" (click)="toggleBtn('hail')" [ngSwitch]="environmentSnapshot.hail">
+      <div class="envBtnWrapper" (click)="toggleBtn('snow')" [ngSwitch]="environmentSnapshot.snow">
         <div *ngSwitchCase='true' class="envBtn active">
           <img src="./images/env_btn/env_hail_on.png"></div>
         <div *ngSwitchCase='false' class="envBtn">
           <img src="./images/env_btn/env_hail.png"></div>
-        <p class="imgDescription">Hail</p>
+        <p class="imgDescription">Snow</p>
       </div>
       <div class="envBtnWrapper" (click)="toggleBtn('lightning')" [ngSwitch]="environmentSnapshot.lightning">
         <div *ngSwitchCase='true' class="envBtn active">
@@ -57,19 +40,19 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
           <img src="./images/env_btn/env_rain.png"></div>
         <p class="imgDescription">Rain</p>
       </div>
-      <div class="envBtnWrapper" (click)="toggleBtn('sunshine')" [ngSwitch]="environmentSnapshot.sunshine">
+      <div class="envBtnWrapper" (click)="toggleBtn('quake')" [ngSwitch]="environmentSnapshot.quake">
         <div *ngSwitchCase='true' class="envBtn active">
           <img src="./images/env_btn/env_sun_on.png"></div>
         <div *ngSwitchCase='false' class="envBtn">
           <img src="./images/env_btn/env_sun.png"></div>
-        <p class="imgDescription">Sunshine</p>
+        <p class="imgDescription">Quake</p>
       </div>
-      <div class="envBtnWrapper" (click)="toggleBtn('wind')" [ngSwitch]="environmentSnapshot.wind">
+      <div class="envBtnWrapper" (click)="toggleBtn('storm')" [ngSwitch]="environmentSnapshot.storm">
         <div *ngSwitchCase='true' class="envBtn active">
           <img src="./images/env_btn/env_wind_on.png"></div>
         <div *ngSwitchCase='false' class="envBtn">
           <img src="./images/env_btn/env_wind.png"></div>
-        <p class="imgDescription">Wind</p>
+        <p class="imgDescription">Storm</p>
       </div>
     </div>
   </div>
@@ -157,11 +140,11 @@ export class EnvironmentComponent {
   URL:string;
   environmentSnapshot: {
     fog:boolean,
-    hail:boolean,
+    snow:boolean,
     lightning:boolean,
     rain:boolean,
-    sunshine:boolean,
-    wind:boolean,
+    quake:boolean,
+    storm:boolean
   };
   playersSnapshot: any;
   getKey:Function;
@@ -214,28 +197,28 @@ export class EnvironmentComponent {
           this.onOff.update({lightning:true});
           break;
         }
-      case 'sunshine':
-        if(this.environmentSnapshot.sunshine==true){
-          this.onOff.update({sunshine:false})
+      case 'quake':
+        if(this.environmentSnapshot.quake==true){
+          this.onOff.update({quake:false})
           break;
         } else {
-          this.onOff.update({sunshine:true});
+          this.onOff.update({quake:true});
           break;
         }
-      case 'hail':
-        if(this.environmentSnapshot.hail==true){
-          this.onOff.update({hail:false})
+      case 'snow':
+        if(this.environmentSnapshot.snow==true){
+          this.onOff.update({snow:false})
           break;
         } else {
-          this.onOff.update({hail:true});
+          this.onOff.update({snow:true});
           break;
         }
-      case 'wind':
-        if(this.environmentSnapshot.wind==true){
-          this.onOff.update({wind:false})
+      case 'storm':
+        if(this.environmentSnapshot.storm==true){
+          this.onOff.update({storm:false})
           break;
         } else {
-          this.onOff.update({wind:true});
+          this.onOff.update({storm:true});
           break;
         }
     }
@@ -251,15 +234,15 @@ export class EnvironmentComponent {
         aether += 1;
         chaos += 2;
     }
-    if (this.environmentSnapshot.sunshine == true) {
+    if (this.environmentSnapshot.quake == true) {
         order += 2;
         material += 1;
     }
-    if (this.environmentSnapshot.hail == true) {
+    if (this.environmentSnapshot.snow == true) {
         aether += 2;
         material += 2;
     }
-    if (this.environmentSnapshot.wind == true) {
+    if (this.environmentSnapshot.storm == true) {
         order += 2;
         chaos += 2;
     }
@@ -347,8 +330,8 @@ export class EnvironmentComponent {
       this.changeEnvironment('fog');
     }
     // s
-    if (key == '83' || key == 'hail') {
-      this.changeEnvironment('hail');
+    if (key == '83' || key == 'snow') {
+      this.changeEnvironment('snow');
     }
     // d
     if (key == '68' || key == 'lightning') {
@@ -359,12 +342,12 @@ export class EnvironmentComponent {
       this.changeEnvironment('rain');
     }
     // g
-    if (key == '71' || key == 'sunshine') {
-      this.changeEnvironment('sunshine');
+    if (key == '71' || key == 'quake') {
+      this.changeEnvironment('quake');
     }
     // h
-    if (key == '72' || key == 'wind') {
-      this.changeEnvironment('wind');
+    if (key == '72' || key == 'storm') {
+      this.changeEnvironment('storm');
     }
   }
 }

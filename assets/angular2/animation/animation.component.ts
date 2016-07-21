@@ -26,7 +26,7 @@ export class AnimationComponent {
   URL:string;
   environmentSnapshot: {
     fog:boolean,
-    hail:boolean,
+    snow:boolean,
     lightning:boolean,
     rain:boolean,
     sunshine:boolean,
