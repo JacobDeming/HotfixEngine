@@ -12,8 +12,10 @@ body {
   max-width: 680px;
   padding: 0 15px;
 }
-.container .text-muted {
+.container .text-muted, .text-muted a {
   margin: 20px 0;
+  color: #555555;
+  text-align: center;
 }
 .contentBlock {
   background: #fff;

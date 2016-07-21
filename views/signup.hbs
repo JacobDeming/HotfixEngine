@@ -56,10 +56,9 @@
   </nav>
 
   <div class="container contentBlock">
-    <h2 class="header" id="signInHeader">Hotfix Game</h2>
+    <h2 class="header" id="signInHeader">Not a player? <span id="failure"></span></h2>
     <div class="regBox">
       <div class="notRegBox">
-        <h4>Not a player? <span id="failure"></span></h4>
         <form name="joinForm" class="joinForm" method="post" action="">
           <div class="formContainer rightForm">
             <h3 class="subHead">
@@ -74,7 +73,7 @@
             <div class="footer">
               <div class="joinButton">
                 <div class="actionLink right">
-                  <input class="buttonForm" id="send" type="submit" value="Join Now">
+                  <input class="buttonForm" id="checkSubmit" type="submit" value="Join Now">
                 </div>
               </div>
             </div>
@@ -87,17 +86,16 @@
 
   <footer class="env-container">
     <div class="container">
-      <p class="text-muted"></p>
+      <p class="text-muted">Design + Code by <a href="https://github.com/JacobDeming/HotfixEngine" target="_blank">Team-Taco</a> | 2016</p>
     </div>
   </footer>
 
   <script type="text/javascript">
-    $("#send").click(function(e){
+    $("#checkSubmit").click(function(e){
       e.preventDefault();
       var username = $("#username").val();
       var password = $("#password").val();
       $.post("/add",{username:username,password:password}, function(response){
-        console.log(response);
         if(response.failure==11000){
           $("#username").val("");
           $("#password").val("");
