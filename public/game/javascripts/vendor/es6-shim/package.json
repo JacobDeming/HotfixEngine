@@ -1,8 +1,16 @@
 {
   "_args": [
     [
-      "es6-shim@^0.35.0",
-      "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine"
+      {
+        "raw": "es6-shim@^0.35.0",
+        "scope": null,
+        "escapedName": "es6-shim",
+        "name": "es6-shim",
+        "rawSpec": "^0.35.0",
+        "spec": ">=0.35.0 <0.36.0",
+        "type": "range"
+      },
+      "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine"
     ]
   ],
   "_from": "es6-shim@>=0.35.0 <0.36.0",
@@ -16,16 +24,17 @@
     "tmp": "tmp/es6-shim-0.35.1.tgz_1463041283862_0.4303069841116667"
   },
   "_npmUser": {
-    "email": "ljharb@gmail.com",
-    "name": "ljharb"
+    "name": "ljharb",
+    "email": "ljharb@gmail.com"
   },
   "_npmVersion": "3.8.6",
   "_phantomChildren": {},
   "_requested": {
-    "name": "es6-shim",
     "raw": "es6-shim@^0.35.0",
-    "rawSpec": "^0.35.0",
     "scope": null,
+    "escapedName": "es6-shim",
+    "name": "es6-shim",
+    "rawSpec": "^0.35.0",
     "spec": ">=0.35.0 <0.36.0",
     "type": "range"
   },
@@ -36,7 +45,7 @@
   "_shasum": "a23524009005b031ab4a352ac196dfdfd1144ab7",
   "_shrinkwrap": null,
   "_spec": "es6-shim@^0.35.0",
-  "_where": "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine",
+  "_where": "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine",
   "author": {
     "name": "Paul Miller",
     "url": "http://paulmillr.com"
@@ -86,12 +95,12 @@
   "main": "es6-shim",
   "maintainers": [
     {
-      "email": "paul@paulmillr.com",
-      "name": "paulmillr"
+      "name": "paulmillr",
+      "email": "paul@paulmillr.com"
     },
     {
-      "email": "ljharb@gmail.com",
-      "name": "ljharb"
+      "name": "ljharb",
+      "email": "ljharb@gmail.com"
     }
   ],
   "name": "es6-shim",
@@ -127,6 +136,7 @@
     "tests-only": "npm run --silent test:shim && npm run --silent test:sham"
   },
   "testling": {
+    "html": "testling.html",
     "browsers": [
       "iexplore/6.0..latest",
       "firefox/3.0..6.0",
@@ -142,8 +152,7 @@
       "ipad/6.0..latest",
       "iphone/6.0..latest",
       "android-browser/4.2..latest"
-    ],
-    "html": "testling.html"
+    ]
   },
   "version": "0.35.1"
 }

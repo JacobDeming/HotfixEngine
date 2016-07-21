@@ -18,9 +18,7 @@ import {AnimationComponent} from './animation/animation.component';
       <timer class="col-lg-4"></timer>
       <player2 class="col-lg-4"></player2>
     </div>
-    <div class="container">
-      <animation></animation>
-    </div>
+    <animation></animation>
   </div>
   <div class="env-container">
     <environment></environment>

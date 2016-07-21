@@ -1,8 +1,16 @@
 {
   "_args": [
     [
-      "reflect-metadata@^0.1.3",
-      "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine"
+      {
+        "raw": "reflect-metadata@^0.1.3",
+        "scope": null,
+        "escapedName": "reflect-metadata",
+        "name": "reflect-metadata",
+        "rawSpec": "^0.1.3",
+        "spec": ">=0.1.3 <0.2.0",
+        "type": "range"
+      },
+      "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine"
     ]
   ],
   "_from": "reflect-metadata@>=0.1.3 <0.2.0",
@@ -12,16 +20,17 @@
   "_location": "/reflect-metadata",
   "_nodeVersion": "4.2.1",
   "_npmUser": {
-    "email": "rbuckton@chronicles.org",
-    "name": "rbuckton"
+    "name": "rbuckton",
+    "email": "rbuckton@chronicles.org"
   },
   "_npmVersion": "3.4.0",
   "_phantomChildren": {},
   "_requested": {
-    "name": "reflect-metadata",
     "raw": "reflect-metadata@^0.1.3",
-    "rawSpec": "^0.1.3",
     "scope": null,
+    "escapedName": "reflect-metadata",
+    "name": "reflect-metadata",
+    "rawSpec": "^0.1.3",
     "spec": ">=0.1.3 <0.2.0",
     "type": "range"
   },
@@ -32,10 +41,10 @@
   "_shasum": "64f8a41974e4f5a5aa9978dac54cfd442dc2f1d5",
   "_shrinkwrap": null,
   "_spec": "reflect-metadata@^0.1.3",
-  "_where": "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine",
+  "_where": "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine",
   "author": {
-    "email": "ron.buckton@microsoft.com",
     "name": "Ron Buckton",
+    "email": "ron.buckton@microsoft.com",
     "url": "http://github.com/rbuckton"
   },
   "bugs": {
@@ -69,8 +78,8 @@
   "main": "Reflect.js",
   "maintainers": [
     {
-      "email": "rbuckton@chronicles.org",
-      "name": "rbuckton"
+      "name": "rbuckton",
+      "email": "rbuckton@chronicles.org"
     }
   ],
   "name": "reflect-metadata",

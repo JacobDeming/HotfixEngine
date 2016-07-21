@@ -1,8 +1,16 @@
 {
   "_args": [
     [
-      "@angular/router@2.0.0-rc.2",
-      "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine"
+      {
+        "raw": "@angular/router@2.0.0-rc.2",
+        "scope": "@angular",
+        "escapedName": "@angular%2frouter",
+        "name": "@angular/router",
+        "rawSpec": "2.0.0-rc.2",
+        "spec": "2.0.0-rc.2",
+        "type": "version"
+      },
+      "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine"
     ]
   ],
   "_from": "@angular/router@2.0.0-rc.2",
@@ -16,16 +24,17 @@
     "tmp": "tmp/router-2.0.0-rc.2.tgz_1466015692469_0.10959147312678397"
   },
   "_npmUser": {
-    "email": "angular-core+npm@google.com",
-    "name": "angular"
+    "name": "angular",
+    "email": "angular-core+npm@google.com"
   },
   "_npmVersion": "3.9.2",
   "_phantomChildren": {},
   "_requested": {
-    "name": "@angular/router",
     "raw": "@angular/router@2.0.0-rc.2",
-    "rawSpec": "2.0.0-rc.2",
     "scope": "@angular",
+    "escapedName": "@angular%2frouter",
+    "name": "@angular/router",
+    "rawSpec": "2.0.0-rc.2",
     "spec": "2.0.0-rc.2",
     "type": "version"
   },
@@ -36,7 +45,7 @@
   "_shasum": "c4608b78f17dc9b2082126cf402df39d41c1f845",
   "_shrinkwrap": null,
   "_spec": "@angular/router@2.0.0-rc.2",
-  "_where": "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine",
+  "_where": "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine",
   "author": {
     "name": "angular"
   },
@@ -57,15 +66,15 @@
   "main": "index.js",
   "maintainers": [
     {
-      "email": "angular-core+npm@google.com",
-      "name": "angular"
+      "name": "angular",
+      "email": "angular-core+npm@google.com"
     }
   ],
   "name": "@angular/router",
   "optionalDependencies": {},
   "peerDependencies": {
-    "@angular/common": "^2.0.0-rc",
     "@angular/core": "^2.0.0-rc",
+    "@angular/common": "^2.0.0-rc",
     "@angular/platform-browser": "^2.0.0-rc"
   },
   "readme": "ERROR: No README data found!",

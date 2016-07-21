@@ -1,8 +1,16 @@
 {
   "_args": [
     [
-      "@angular/upgrade@2.0.0-rc.2",
-      "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine"
+      {
+        "raw": "@angular/upgrade@2.0.0-rc.2",
+        "scope": "@angular",
+        "escapedName": "@angular%2fupgrade",
+        "name": "@angular/upgrade",
+        "rawSpec": "2.0.0-rc.2",
+        "spec": "2.0.0-rc.2",
+        "type": "version"
+      },
+      "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine"
     ]
   ],
   "_from": "@angular/upgrade@2.0.0-rc.2",
@@ -16,16 +24,17 @@
     "tmp": "tmp/upgrade-2.0.0-rc.2.tgz_1466013779767_0.5864936842117459"
   },
   "_npmUser": {
-    "email": "angular-core+npm@google.com",
-    "name": "angular"
+    "name": "angular",
+    "email": "angular-core+npm@google.com"
   },
   "_npmVersion": "3.9.2",
   "_phantomChildren": {},
   "_requested": {
-    "name": "@angular/upgrade",
     "raw": "@angular/upgrade@2.0.0-rc.2",
-    "rawSpec": "2.0.0-rc.2",
     "scope": "@angular",
+    "escapedName": "@angular%2fupgrade",
+    "name": "@angular/upgrade",
+    "rawSpec": "2.0.0-rc.2",
     "spec": "2.0.0-rc.2",
     "type": "version"
   },
@@ -36,7 +45,7 @@
   "_shasum": "49855fe9b27a7221b15066730e4ff0a4a04438a0",
   "_shrinkwrap": null,
   "_spec": "@angular/upgrade@2.0.0-rc.2",
-  "_where": "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine",
+  "_where": "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine",
   "author": {
     "name": "angular"
   },
@@ -57,15 +66,15 @@
   "main": "upgrade.js",
   "maintainers": [
     {
-      "email": "angular-core+npm@google.com",
-      "name": "angular"
+      "name": "angular",
+      "email": "angular-core+npm@google.com"
     }
   ],
   "name": "@angular/upgrade",
   "optionalDependencies": {},
   "peerDependencies": {
-    "@angular/compiler": "2.0.0-rc.2",
     "@angular/core": "2.0.0-rc.2",
+    "@angular/compiler": "2.0.0-rc.2",
     "@angular/platform-browser": "2.0.0-rc.2"
   },
   "readme": "ERROR: No README data found!",
