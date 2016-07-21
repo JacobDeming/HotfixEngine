@@ -7,11 +7,11 @@ var Globals = {
   },
   OnOff: {
     fog: false,
-    hail: false,
+    snow: false,
     lightning: false,
     rain: false,
-    sunshine: false,
-    wind: false
+    quake: false,
+    storm: false
   }
 }
 
