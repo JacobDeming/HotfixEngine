@@ -1,8 +1,16 @@
 {
   "_args": [
     [
-      "@angular/platform-browser-dynamic@2.0.0-rc.2",
-      "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine"
+      {
+        "raw": "@angular/platform-browser-dynamic@2.0.0-rc.2",
+        "scope": "@angular",
+        "escapedName": "@angular%2fplatform-browser-dynamic",
+        "name": "@angular/platform-browser-dynamic",
+        "rawSpec": "2.0.0-rc.2",
+        "spec": "2.0.0-rc.2",
+        "type": "version"
+      },
+      "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine"
     ]
   ],
   "_from": "@angular/platform-browser-dynamic@2.0.0-rc.2",
@@ -16,16 +24,17 @@
     "tmp": "tmp/platform-browser-dynamic-2.0.0-rc.2.tgz_1466013761799_0.29978266824036837"
   },
   "_npmUser": {
-    "email": "angular-core+npm@google.com",
-    "name": "angular"
+    "name": "angular",
+    "email": "angular-core+npm@google.com"
   },
   "_npmVersion": "3.9.2",
   "_phantomChildren": {},
   "_requested": {
-    "name": "@angular/platform-browser-dynamic",
     "raw": "@angular/platform-browser-dynamic@2.0.0-rc.2",
-    "rawSpec": "2.0.0-rc.2",
     "scope": "@angular",
+    "escapedName": "@angular%2fplatform-browser-dynamic",
+    "name": "@angular/platform-browser-dynamic",
+    "rawSpec": "2.0.0-rc.2",
     "spec": "2.0.0-rc.2",
     "type": "version"
   },
@@ -36,7 +45,7 @@
   "_shasum": "c01c4d1ec3751360229d3bff5b24785428eaaaf9",
   "_shrinkwrap": null,
   "_spec": "@angular/platform-browser-dynamic@2.0.0-rc.2",
-  "_where": "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine",
+  "_where": "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine",
   "author": {
     "name": "angular"
   },
@@ -53,16 +62,16 @@
   "main": "index.js",
   "maintainers": [
     {
-      "email": "angular-core+npm@google.com",
-      "name": "angular"
+      "name": "angular",
+      "email": "angular-core+npm@google.com"
     }
   ],
   "name": "@angular/platform-browser-dynamic",
   "optionalDependencies": {},
   "peerDependencies": {
+    "@angular/core": "2.0.0-rc.2",
     "@angular/common": "2.0.0-rc.2",
     "@angular/compiler": "2.0.0-rc.2",
-    "@angular/core": "2.0.0-rc.2",
     "@angular/platform-browser": "2.0.0-rc.2"
   },
   "readme": "ERROR: No README data found!",
