@@ -23,6 +23,7 @@ import {Player2SpriteComponent} from './sprites/player2sprite.component';
 
 export class AnimationComponent {
   onOff:FirebaseObjectObservable<any>;
+  URL:string;
   environmentSnapshot: {
     fog:boolean,
     hail:boolean,
@@ -33,10 +34,11 @@ export class AnimationComponent {
   };
 
   constructor (af:AngularFire){
-  this.onOff = af.database.object('/'+this.URL.split('/game/')[1]+'/Globals/OnOff',{preserveSnapshot:true});
-  this.onOff.subscribe(snap =>{
-    this.environmentSnapshot = snap.val()
-  })
+    this.URL=window.location.href;
+    this.onOff = af.database.object('/'+this.URL.split('/game/')[1]+'/Globals/OnOff',{preserveSnapshot:true});
+    this.onOff.subscribe(snap =>{
+      this.environmentSnapshot = snap.val()
+    })
   }
 
 }
