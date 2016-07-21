@@ -308,8 +308,6 @@ export class Player2SpriteComponent{
           ticksPerFrame: 10
         });
         // Load sprite sheet
-        console.log(characterImage);
-        console.log(character);
         characterImage.addEventListener("load", gameLoop);
         characterImage.src = "images/sprites/player-2/gohan/gohan-defeat.png";
         break;
@@ -383,8 +381,6 @@ export class Player2SpriteComponent{
           loop: true
         });
         // Load sprite sheet
-        console.log(characterImage);
-        console.log(character);
         characterImage.addEventListener("load", gameLoop);
         characterImage.src = "images/sprites/player-2/gohan/gohan-standing.png";
         break;
