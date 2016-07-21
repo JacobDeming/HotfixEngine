@@ -18,6 +18,10 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
       <p class="text-center">{{player1Action}}</p>
       <p class="text-center">{{player2Action}}</p>
     </div>
+    <div *ngIf="winner!=null">
+      <p class="text-center time-text">
+        {{winner}}
+      </p>
   </div>
   `
 })
