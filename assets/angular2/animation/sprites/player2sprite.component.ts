@@ -1,14 +1,16 @@
-import {Component} from '@angular/core';
+import {Component,ViewChild,ElementRef} from '@angular/core';
 import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
 
 @Component({
   selector: 'player2sprite',
   template: `
-    <canvas id="player2Animation"></canvas>
+    <canvas #myCanvas id="player2Animation"></canvas>
     `
 })
 
 export class Player2SpriteComponent{
+  @ViewChild('myCanvas') canvas:ElementRef;
+
   timerObservable:FirebaseObjectObservable<any>;
   playerObservable:FirebaseObjectObservable<any>; 
   URL:string;
@@ -40,7 +42,7 @@ export class Player2SpriteComponent{
 
   animate(playerClass,playerAction){
     /* Set up canvas variables */
-    var canvas = document.getElementById("player2Animation");
+    var canvas = this.canvas.nativeElement;
     var character,characterImage;
     function gameLoop(){
       window.requestAnimationFrame(gameLoop);
@@ -246,7 +248,7 @@ export class Player2SpriteComponent{
 
   animateDefeat(playerClass){
     /* Set up canvas variables */
-    var canvas = document.getElementById("player2Animation");
+    var canvas = this.canvas.nativeElement;
     var character,characterImage;
     function gameLoop(){
       window.requestAnimationFrame(gameLoop);
@@ -318,7 +320,7 @@ export class Player2SpriteComponent{
 
   animateStance(playerClass){
     /* Set up canvas variables */
-    var canvas = document.getElementById("player2Animation");
+    var canvas = this.canvas.nativeElement;
     var character,characterImage;
     function gameLoop(){
       window.requestAnimationFrame(gameLoop);
