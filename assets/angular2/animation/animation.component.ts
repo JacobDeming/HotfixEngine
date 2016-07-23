@@ -149,6 +149,7 @@ export class AnimationComponent implements OnInit {
     switch(x){
       case("fog"):
         $("#fogCanvas").show();
+        this.fog();
         break;
       case("lightning"):
         $("#lightningCanvas").show();
@@ -296,10 +297,10 @@ export class AnimationComponent implements OnInit {
         }
       }
 
-      // Repeat FOREVER
-      requestAnimationFrame(function() {
-        draw(startT, totalT);
-      });
+      // Repeat if there's still a living particle
+      if (stillAlive) {
+        requestAnimationFrame(function(){draw(startT,totalT);}); 
+      }
     }
 
     function randBetween(n1, n2) {
