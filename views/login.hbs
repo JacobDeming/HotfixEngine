@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="./game/stylesheets/styles.css">
   <link rel="stylesheet" href="./game/stylesheets/login.css">
   <link rel="stylesheet" href="./game/stylesheets/navbar.css">
-
+  
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery.js"></script>
 
@@ -37,9 +37,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand fancy bolder" href="#">
-          <img src='/game/images/HotfixEngineLogo.png' style="height:170%;width:20%;">
-        </a>
+        <a href="#" class="navbar-brand"><img src='/game/images/HotfixEngineLogo.png' height="20"></a>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -56,10 +54,9 @@
   </nav>
 
   <div class="container contentBlock">
-    <h2 class="header" id="signInHeader">Hotfix Game</h2>
+    <h2 class="header" id="signInHeader">Returning player! <span id="failure"></span></h2>
     <div class="regBox">
       <div class="signInBox">
-        <h4>Returning player</h4>
         <form class="active" method="post" action="LoggingIn">
           <h3 class="subHead">Log In</h3>
           <div class="userName">
@@ -85,6 +82,8 @@
 
   <footer class="env-container">
     <div class="container">
+      <p class="text-muted">Design + Code by 
+      <a href="https://github.com/JacobDeming/HotfixEngine" target="_blank">Team-Taco</a> | 2016</p>
     </div>
   </footer>
 

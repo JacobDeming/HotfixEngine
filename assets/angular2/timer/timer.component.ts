@@ -3,18 +3,16 @@ import {Input,Output,EventEmitter} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
 
-
 @Component({
   selector: 'timer',
   template: `
-  <div class="center-block">
+  <div class="timer-container text-center">
     <div *ngIf="ready!=true">
-      <button class="center-block btn btn-primary" (click)="readyToPlay()">Ready to Play?</button>
+      <button class="btn readyBtn" (click)="readyToPlay()">Ready to Play?</button>
     </div>
     <div *ngIf="ready==true && winner==null">
       <p class="time-text text-center">ROUND ENDS IN...</p>
       <p class="clock text-center">{{remaining}}</p>
-      <p class="text-center time-text">LAST ROUND</p>
       <p class="text-center">{{player1Action}}</p>
       <p class="text-center">{{player2Action}}</p>
     </div>
@@ -23,7 +21,25 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
         {{winner}}
       </p>
   </div>
-  `
+  `,
+  styles: [`
+  .readyBtn {
+    background-color: #29B0AE;
+    border: none;
+    color: #FFF;
+    font-family: 'Bangers', cursive;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 0;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .readyBtn:hover {
+    background-color: #235552;
+    transition: all .4s
+  }
+  `]
 })
 
 export class TimerComponent{
@@ -54,7 +70,7 @@ export class TimerComponent{
         this.playersInfo = snap.val().Players;
         this.environmentInfo = snap.val().Globals.Environment;
         if (this.playersInfo.player1.currentHitpoints <= 0){
-          this.winner = this.playersInfo.player2.playerClass+ "IS THE WINNER!";
+          this.winner = this.playersInfo.player2.playerClass+" IS THE WINNER!";
         }
         if (this.playersInfo.player2.currentHitpoints <= 0){
           this.winner = this.playersInfo.player1.playerClass+" IS THE WINNER!";

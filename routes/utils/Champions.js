@@ -27,7 +27,7 @@ var Champions = [
 
     Paragon = {
         playerClass: "Paragon",
-        hitpoints: 120,
+        hitpoints: 100,
         currentHitpoints: 120,
         physicalAttack: 10,
         physicalDefense: 8,
