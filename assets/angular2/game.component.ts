@@ -6,6 +6,7 @@ import {StatsComponent} from './stats/stats.component';
 import {AnimationComponent} from './animation/animation.component';
 import {EnvironmentComponent} from './environment/environment.component';
 
+
 @Component({
   selector: 'my-app',
   template:`
