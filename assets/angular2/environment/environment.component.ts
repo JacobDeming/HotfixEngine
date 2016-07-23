@@ -6,12 +6,12 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
   selector: 'environment',
   template: `
   <div *ngIf="environmentSnapshot" class="container">
-    <div class="col-sm-6 pull-left">
+    <div class="col-sm-12 col-md-4 col-lg-6 pull-left">
       <p>
         To play, press key to turn on/off:<br>
         [A] FOG; [S] SNOW; [D] LIGHTNING; [F] RAIN; [G] QUAKE; [H] STORM</p>
     </div>
-    <div class="col-sm-6 pull-right envBtns" *ngIf="environment">
+    <div class="pull-right envBtns" *ngIf="environment">
       <div class="envBtnWrapper" (click)="toggleBtn('fog')" [ngSwitch]="environmentSnapshot.fog">
         <div *ngSwitchCase='true' class="envBtn active">
           <img src="./images/env_btn/env_fog_on.png"></div>
@@ -42,9 +42,9 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
       </div>
       <div class="envBtnWrapper" (click)="toggleBtn('quake')" [ngSwitch]="environmentSnapshot.quake">
         <div *ngSwitchCase='true' class="envBtn active">
-          <img src="./images/env_btn/env_sun_on.png"></div>
+          <img src="./images/env_btn/env_quake_on.png"></div>
         <div *ngSwitchCase='false' class="envBtn">
-          <img src="./images/env_btn/env_sun.png"></div>
+          <img src="./images/env_btn/env_quake.png"></div>
         <p class="imgDescription">Quake</p>
       </div>
       <div class="envBtnWrapper" (click)="toggleBtn('storm')" [ngSwitch]="environmentSnapshot.storm">
@@ -58,11 +58,6 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
   </div>
   `,
   styles: [`
-    @media (max-width: 736px) {
-      .envBtns {
-        display: none;
-      }
-    }
     .envBtnWrapper {
       display: inline-block;
       background: transparent;
@@ -128,6 +123,11 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
     .envBtnWrapper:hover .imgDescription {
       visibility: visible;
       opacity: 1;
+    }
+    @media (max-width: 1000px) {
+      .envBtns {
+        display: none;
+      }
     }
   `],
   directives: [NgSwitch, NgSwitchCase, NgSwitchDefault]
