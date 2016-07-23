@@ -1,16 +1,8 @@
 {
   "_args": [
     [
-      {
-        "raw": "zone.js@^0.6.6",
-        "scope": null,
-        "escapedName": "zone.js",
-        "name": "zone.js",
-        "rawSpec": "^0.6.6",
-        "spec": ">=0.6.6 <0.7.0",
-        "type": "range"
-      },
-      "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine"
+      "zone.js@^0.6.6",
+      "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine"
     ]
   ],
   "_from": "zone.js@>=0.6.6 <0.7.0",
@@ -24,17 +16,16 @@
     "tmp": "tmp/zone.js-0.6.12.tgz_1461108132653_0.6872482218313962"
   },
   "_npmUser": {
-    "name": "angularcore",
-    "email": "angular-core+npm@google.com"
+    "email": "angular-core+npm@google.com",
+    "name": "angularcore"
   },
   "_npmVersion": "3.6.0",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "zone.js@^0.6.6",
-    "scope": null,
-    "escapedName": "zone.js",
     "name": "zone.js",
+    "raw": "zone.js@^0.6.6",
     "rawSpec": "^0.6.6",
+    "scope": null,
     "spec": ">=0.6.6 <0.7.0",
     "type": "range"
   },
@@ -45,7 +36,7 @@
   "_shasum": "346aa83f4e5093fb98b31c241f4daed9290accee",
   "_shrinkwrap": null,
   "_spec": "zone.js@^0.6.6",
-  "_where": "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine",
+  "_where": "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine",
   "author": {
     "name": "Brian Ford"
   },
@@ -96,12 +87,12 @@
   "main": "dist/zone-node.js",
   "maintainers": [
     {
-      "name": "angularcore",
-      "email": "angular-core+npm@google.com"
+      "email": "angular-core+npm@google.com",
+      "name": "angularcore"
     },
     {
-      "name": "btford",
-      "email": "briantford@gmail.com"
+      "email": "briantford@gmail.com",
+      "name": "btford"
     }
   ],
   "name": "zone.js",

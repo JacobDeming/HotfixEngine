@@ -1,16 +1,8 @@
 {
   "_args": [
     [
-      {
-        "raw": "@angular/core@2.0.0-rc.2",
-        "scope": "@angular",
-        "escapedName": "@angular%2fcore",
-        "name": "@angular/core",
-        "rawSpec": "2.0.0-rc.2",
-        "spec": "2.0.0-rc.2",
-        "type": "version"
-      },
-      "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine"
+      "@angular/core@2.0.0-rc.2",
+      "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine"
     ]
   ],
   "_from": "@angular/core@2.0.0-rc.2",
@@ -24,17 +16,16 @@
     "tmp": "tmp/core-2.0.0-rc.2.tgz_1466013731566_0.9461118599865586"
   },
   "_npmUser": {
-    "name": "angular",
-    "email": "angular-core+npm@google.com"
+    "email": "angular-core+npm@google.com",
+    "name": "angular"
   },
   "_npmVersion": "3.9.2",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "@angular/core@2.0.0-rc.2",
-    "scope": "@angular",
-    "escapedName": "@angular%2fcore",
     "name": "@angular/core",
+    "raw": "@angular/core@2.0.0-rc.2",
     "rawSpec": "2.0.0-rc.2",
+    "scope": "@angular",
     "spec": "2.0.0-rc.2",
     "type": "version"
   },
@@ -45,7 +36,7 @@
   "_shasum": "a5761cdaf1c65b0c726b34e8bc1bb5dd692086c3",
   "_shrinkwrap": null,
   "_spec": "@angular/core@2.0.0-rc.2",
-  "_where": "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine",
+  "_where": "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine",
   "author": {
     "name": "angular"
   },
@@ -66,8 +57,8 @@
   "main": "index.js",
   "maintainers": [
     {
-      "name": "angular",
-      "email": "angular-core+npm@google.com"
+      "email": "angular-core+npm@google.com",
+      "name": "angular"
     }
   ],
   "name": "@angular/core",

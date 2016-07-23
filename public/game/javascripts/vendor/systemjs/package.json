@@ -1,16 +1,8 @@
 {
   "_args": [
     [
-      {
-        "raw": "systemjs@0.19.27",
-        "scope": null,
-        "escapedName": "systemjs",
-        "name": "systemjs",
-        "rawSpec": "0.19.27",
-        "spec": "0.19.27",
-        "type": "version"
-      },
-      "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine"
+      "systemjs@0.19.27",
+      "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine"
     ]
   ],
   "_from": "systemjs@0.19.27",
@@ -24,17 +16,16 @@
     "tmp": "tmp/systemjs-0.19.27.tgz_1461935365619_0.16924894507974386"
   },
   "_npmUser": {
-    "name": "guybedford",
-    "email": "guybedford@gmail.com"
+    "email": "guybedford@gmail.com",
+    "name": "guybedford"
   },
   "_npmVersion": "2.14.20",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "systemjs@0.19.27",
-    "scope": null,
-    "escapedName": "systemjs",
     "name": "systemjs",
+    "raw": "systemjs@0.19.27",
     "rawSpec": "0.19.27",
+    "scope": null,
     "spec": "0.19.27",
     "type": "version"
   },
@@ -45,7 +36,7 @@
   "_shasum": "f1740d565ce64371ac0de7072a4d1e5471ba7ba2",
   "_shrinkwrap": null,
   "_spec": "systemjs@0.19.27",
-  "_where": "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine",
+  "_where": "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine",
   "author": {
     "name": "Guy Bedford"
   },
@@ -78,8 +69,8 @@
   "license": "MIT",
   "maintainers": [
     {
-      "name": "guybedford",
-      "email": "guybedford@gmail.com"
+      "email": "guybedford@gmail.com",
+      "name": "guybedford"
     }
   ],
   "name": "systemjs",

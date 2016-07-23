@@ -1,16 +1,8 @@
 {
   "_args": [
     [
-      {
-        "raw": "angularfire2@^2.0.0-beta.2",
-        "scope": null,
-        "escapedName": "angularfire2",
-        "name": "angularfire2",
-        "rawSpec": "^2.0.0-beta.2",
-        "spec": ">=2.0.0-beta.2 <3.0.0",
-        "type": "range"
-      },
-      "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine"
+      "angularfire2@^2.0.0-beta.2",
+      "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine"
     ]
   ],
   "_from": "angularfire2@>=2.0.0-beta.2 <3.0.0",
@@ -24,17 +16,16 @@
     "tmp": "tmp/angularfire2-2.0.0-beta.2.tgz_1466557136126_0.8304361375048757"
   },
   "_npmUser": {
-    "name": "angularcore",
-    "email": "angular-core+npm@google.com"
+    "email": "angular-core+npm@google.com",
+    "name": "angularcore"
   },
   "_npmVersion": "3.8.3",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "angularfire2@^2.0.0-beta.2",
-    "scope": null,
-    "escapedName": "angularfire2",
     "name": "angularfire2",
+    "raw": "angularfire2@^2.0.0-beta.2",
     "rawSpec": "^2.0.0-beta.2",
+    "scope": null,
     "spec": ">=2.0.0-beta.2 <3.0.0",
     "type": "range"
   },
@@ -45,7 +36,7 @@
   "_shasum": "1455af597a789e6da206a6eefff87851dddb11e7",
   "_shrinkwrap": null,
   "_spec": "angularfire2@^2.0.0-beta.2",
-  "_where": "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine",
+  "_where": "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine",
   "author": {
     "name": "jeffbcross"
   },
@@ -100,25 +91,25 @@
   "main": "./angularfire2.js",
   "maintainers": [
     {
-      "name": "angularcore",
-      "email": "angular-core+npm@google.com"
+      "email": "angular-core+npm@google.com",
+      "name": "angularcore"
     },
     {
-      "name": "davideast",
-      "email": "dceast@gmail.com"
+      "email": "dceast@gmail.com",
+      "name": "davideast"
     },
     {
-      "name": "jeffbcross",
-      "email": "middlefloor@gmail.com"
+      "email": "middlefloor@gmail.com",
+      "name": "jeffbcross"
     }
   ],
   "name": "angularfire2",
   "optionalDependencies": {},
   "peerDependencies": {
-    "@angular/core": "2.0.0-rc.2",
-    "@angular/platform-browser": "2.0.0-rc.2",
     "@angular/common": "2.0.0-rc.2",
     "@angular/compiler": "2.0.0-rc.2",
+    "@angular/core": "2.0.0-rc.2",
+    "@angular/platform-browser": "2.0.0-rc.2",
     "@angular/platform-browser-dynamic": "2.0.0-rc.2",
     "firebase": "^3.0.3",
     "rxjs": "5.0.0-beta.6"

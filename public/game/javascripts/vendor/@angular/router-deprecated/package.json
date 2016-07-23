@@ -1,16 +1,8 @@
 {
   "_args": [
     [
-      {
-        "raw": "@angular/router-deprecated@2.0.0-rc.2",
-        "scope": "@angular",
-        "escapedName": "@angular%2frouter-deprecated",
-        "name": "@angular/router-deprecated",
-        "rawSpec": "2.0.0-rc.2",
-        "spec": "2.0.0-rc.2",
-        "type": "version"
-      },
-      "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine"
+      "@angular/router-deprecated@2.0.0-rc.2",
+      "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine"
     ]
   ],
   "_from": "@angular/router-deprecated@2.0.0-rc.2",
@@ -24,17 +16,16 @@
     "tmp": "tmp/router-deprecated-2.0.0-rc.2.tgz_1466015704080_0.16310800914652646"
   },
   "_npmUser": {
-    "name": "angular",
-    "email": "angular-core+npm@google.com"
+    "email": "angular-core+npm@google.com",
+    "name": "angular"
   },
   "_npmVersion": "3.9.2",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "@angular/router-deprecated@2.0.0-rc.2",
-    "scope": "@angular",
-    "escapedName": "@angular%2frouter-deprecated",
     "name": "@angular/router-deprecated",
+    "raw": "@angular/router-deprecated@2.0.0-rc.2",
     "rawSpec": "2.0.0-rc.2",
+    "scope": "@angular",
     "spec": "2.0.0-rc.2",
     "type": "version"
   },
@@ -45,7 +36,7 @@
   "_shasum": "6ffdf75f6090a48e9f084a15aa75e7ce1389be53",
   "_shrinkwrap": null,
   "_spec": "@angular/router-deprecated@2.0.0-rc.2",
-  "_where": "/Users/lijasminej/Documents/RCB/Projects/rcb-project-3/HotfixEngine",
+  "_where": "C:\\Users\\jacob\\OneDrive\\Documents\\GitHub\\HotfixEngine",
   "author": {
     "name": "angular"
   },
@@ -66,15 +57,15 @@
   "main": "index.js",
   "maintainers": [
     {
-      "name": "angular",
-      "email": "angular-core+npm@google.com"
+      "email": "angular-core+npm@google.com",
+      "name": "angular"
     }
   ],
   "name": "@angular/router-deprecated",
   "optionalDependencies": {},
   "peerDependencies": {
-    "@angular/core": "^2.0.0-rc",
     "@angular/common": "^2.0.0-rc",
+    "@angular/core": "^2.0.0-rc",
     "@angular/platform-browser": "^2.0.0-rc"
   },
   "readme": "ERROR: No README data found!",
