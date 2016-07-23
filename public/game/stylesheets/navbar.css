@@ -23,6 +23,15 @@
   transition: all .2s;
 }
 
+.navbar-brand {
+  opacity: .5;
+}
+
+.navbar-brand:hover {
+  opacity: 1;
+  transition: all .4s;
+}
+
 @media (min-width: 769px) {
   .navbar-right .navbar-icon i {
     display: all;

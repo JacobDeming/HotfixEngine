@@ -23,7 +23,6 @@ body {
   padding: 10px 59px;
   min-height: 400px;
   width: 600px;
-  min-width: 600px;
   max-width: 600px;
   top: 32px;
 }
@@ -63,9 +62,6 @@ h3.subHead {
   font-weight: bold;
   color: #555555;
   line-height: 18px;
-}
-.regBox {
-  margin: 25px 14px 12px 40px;
 }
 .signInBox, .notRegBox {
   background-color: #e7e7e7;
@@ -148,4 +144,21 @@ input.logintextbox {
   margin-left:15px;
   text-transform:uppercase;
   overflow-y:hidden;
+}
+
+@media (min-width: 769px) {
+  .regBox {
+    padding: 25px 12px 0px 12px;
+  }
+}
+@media (max-width: 768px) {
+  .contentBlock, .regBox {
+    width: 100%;
+  }
+  .signInBox, .notRegBox {
+    width: 100%;
+  }
+  .regBox {
+    padding: 25px 6px 0px 6px;
+  }
 }
