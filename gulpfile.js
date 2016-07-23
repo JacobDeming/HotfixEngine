@@ -3,23 +3,38 @@ var gulp = require('gulp');
 var gulpTypescript = require('gulp-typescript');
 var gulpSourcemaps = require('gulp-sourcemaps');
 
-var appDev = 'assets/angular2/';
-var appProd = 'public/game/javascripts/app/';
+var gameDev = 'assets/game/';
+var gameProd = 'public/game/javascripts/app/';
+var lobbyDev = 'assets/lobby';
+var lobbyProd = 'public/lobby/javascripts/app';
 var vendor = 'public/game/javascripts/vendor';
 
 var tsconfig = gulpTypescript.createProject('tsconfig.json');
 
-gulp.task('build-ts',function(){
-  return gulp.src(appDev+'/**/*.ts')
+gulp.task('build-game-ts',function(){
+  return gulp.src(gameDev+'/**/*.ts')
     .pipe(gulpSourcemaps.init())
     .pipe(gulpTypescript(tsconfig))
     .pipe(gulpSourcemaps.write())
-    .pipe(gulp.dest(appProd));
+    .pipe(gulp.dest(gameProd));
 });
 
-gulp.task('build-copy',function(){
-  return gulp.src([appDev+'**/*.html', appDev+'**/*.htm',appDev+'**/*.css'])
-    .pipe(gulp.dest(appProd));
+gulp.task('build-game-copy',function(){
+  return gulp.src([gameDev+'**/*.html', gameDev+'**/*.htm',gameDev+'**/*.css'])
+    .pipe(gulp.dest(gameProd));
+});
+
+gulp.task('build-lobby-ts',function(){
+  return gulp.src(lobbyDev+'/**/*.ts')
+    .pipe(gulpSourcemaps.init())
+    .pipe(gulpTypescript(tsconfig))
+    .pipe(gulpSourcemaps.write())
+    .pipe(gulp.dest(lobbyProd));
+});
+
+gulp.task('build-lobby-copy',function(){
+  return gulp.src([lobbyDev+'**/*.html', lobbyDev+'**/*.htm',lobbyDev+'**/*.css'])
+    .pipe(gulp.dest(lobbyProd));
 });
 
 gulp.task('vendor',function(){
@@ -49,8 +64,8 @@ gulp.task('vendor',function(){
 });
 
 gulp.task('watch',function(){
-  gulp.watch(appDev+'**/*.ts',['build-ts']);
-  gulp.watch(appDev+'**/*.{html,htm,css}',['build-copy']);
+  gulp.watch(gameDev+'**/*.ts',['build-ts']);
+  gulp.watch(gameDev+'**/*.{html,htm,css}',['build-copy']);
 });
 
-gulp.task('default',['watch','build-ts','build-copy','vendor']);
+gulp.task('default',['watch','build-game-ts','build-game-copy','vendor']);

@@ -103,7 +103,7 @@ router.post('/add',function(req,res){
 })
 
 router.get('/game/:roomPath',function(req,res,next){
-  res.render('index');
+  res.render('game');
 })
 
 module.exports = router;
