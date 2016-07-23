@@ -204,7 +204,7 @@ export class AnimationComponent implements OnInit {
     smokeImage.src = "images/smoke2.png";
 
     for (var i1 = 0; i1 < puffs; i1++) {
-      var puffDelay = i1 * 10;
+      var puffDelay = i1 * 1500; //300 ms between puffs
       for (var i2 = 0; i2 < particlesPerPuff; i2++) {
         addNewParticle((i2 * 50) + puffDelay);
       }
