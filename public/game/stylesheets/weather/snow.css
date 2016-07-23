@@ -1,13 +1,8 @@
 .snowing {
-	background: none;
-	font-family: Androgyne;
-	background-image: url('http://www.wearewebstars.dk/codepen/img/s1.png'), url('http://www.wearewebstars.dk/codepen/img//s2.png'), url('http://www.wearewebstars.dk/codepen/img//s3.png');
+	background-image: url('../../images/s1.png'), url('../../images/s2.png'), url('../../images/s3.png');
 	height: 100%;
-	left: 0;
-	position: absolute;
-	top: 0;
 	width: 100%;
-	z-index:-1;
+	position: absolute;
 	-webkit-animation: snow 10s linear infinite;
 	-moz-animation: snow 10s linear infinite;
 	-ms-animation: snow 10s linear infinite;

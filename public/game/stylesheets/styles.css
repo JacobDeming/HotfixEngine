@@ -33,13 +33,21 @@ body {
   position: fixed;
 }
 
+.stats-wrapper {
+  display: inline-block;
+  margin: 0;
+  padding: 50px;
+  width: 100%;
+  z-index: 99;
+}
+
 .stat-container {
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   border: 30px solid transparent;
   border: 1px solid white;
   display: inline-block;
-  width: 350px;
+  max-width: 250px;
   -webkit-box-shadow: 0px 0px 2px #ccc;
   -moz-box-shadow:    0px 0px 2px #ccc;
   box-shadow:         0px 0px 2px #ccc;
@@ -91,7 +99,7 @@ body {
 
 /* /game */
 
-.weather-zone {
+.timer-container, .weather-zone {
   /* full page effects */
   position: fixed;
   top: 0;
@@ -101,8 +109,15 @@ body {
   z-index: -99;
 }
 
+.timer-container {
+  top: 140px;
+  z-index: 99;
+}
+
 .sprites-container {
-  position: relative;
+  /* pushed to bottom */
+  position: fixed;
+  bottom: 140px;
   margin: 0;
   padding: 40px;
   width: 100%;

@@ -11,6 +11,7 @@ import {Player2SpriteComponent} from './sprites/player2sprite.component';
     <canvas class="canvas" id="fogCanvas"></canvas>
     <canvas class="canvas" id="lightningCanvas"></canvas>
     <canvas class="canvas" id="rainCanvas"></canvas>
+    <canvas class="canvas" id="snowCanvas"></canvas>
     <canvas class="canvas" id="stormCanvas"></canvas>
   </div>
   <div class="sprites-container">
@@ -30,8 +31,7 @@ import {Player2SpriteComponent} from './sprites/player2sprite.component';
       bottom:112px;
     }
     #fogCanvas{
-      opacity: 0.2;
-      height:400px;
+      opacity: 1;
       z-index: -3;
     }
     #lightningCanvas {
@@ -136,6 +136,10 @@ export class AnimationComponent implements OnInit {
     this.turnOff("rain");
     this.rain();
 
+    /* Snowing */
+    this.turnOff("snow");
+    this.snow();
+
     /* Storming */
     this.turnOff("storm");
     this.storm();
@@ -156,7 +160,7 @@ export class AnimationComponent implements OnInit {
         $("#rainCanvas").show();
         break;
       case("snow"):
-        this.snow();
+        $("#snowCanvas").show();
         break;
       case("storm"):
         $("#stormCanvas").show();
@@ -179,7 +183,7 @@ export class AnimationComponent implements OnInit {
         $("#rainCanvas").hide();
         break;
       case("snow"):
-        $("#weather").removeClass("snowing");
+        $("#snowCanvas").hide();
         break;
       case("storm"):
         $("#stormCanvas").hide();
@@ -191,17 +195,15 @@ export class AnimationComponent implements OnInit {
 
     var canvasWidth = 1600;
     var canvasHeight = 200;
-
     var pCount = 0;
     var pCollection = new Array();
     var puffs = 1;
     var particlesPerPuff = 2000;
-    var img = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/85280/smoke2.png";
     var smokeImage = new Image();
-    smokeImage.src = img;
+    smokeImage.src = "images/smoke2.png";
 
     for (var i1 = 0; i1 < puffs; i1++) {
-      var puffDelay = i1 * 1500; //300 ms between puffs
+      var puffDelay = i1 * 10;
       for (var i2 = 0; i2 < particlesPerPuff; i2++) {
         addNewParticle((i2 * 50) + puffDelay);
       }
@@ -281,7 +283,7 @@ export class AnimationComponent implements OnInit {
           var newLeft = p.left + (p.speedRight * (td / 1000));
           var newOpacity = Math.max(p.startOpacity * (1 - frac), 0);
 
-          var newSize = p.size + (p.growth * (td / 1000));
+          var newSize = Math.floor(p.size + (p.growth * (td / 1000)));
           p.newTop = newTop;
           p.newLeft = newLeft;
 
@@ -294,12 +296,10 @@ export class AnimationComponent implements OnInit {
         }
       }
 
-      // Repeat if there's still a living particle
-      if (stillAlive) {
-        requestAnimationFrame(function() {
-          draw(startT, totalT);
-        });
-      }
+      // Repeat FOREVER
+      requestAnimationFrame(function() {
+        draw(startT, totalT);
+      });
     }
 
     function randBetween(n1, n2) {
@@ -584,7 +584,7 @@ export class AnimationComponent implements OnInit {
   }
 
   snow(){
-    $("#weather").addClass("snowing");
+    $("#snowCanvas").addClass("snowing");
   }
 
   storm(){
