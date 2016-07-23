@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hotfix Engine</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+  <script src="javascripts/vendor/es6-shim/es6-shim.min.js"></script>
+  <script src="javascripts/vendor/zone.js/dist/zone.js"></script>
+  <script src="javascripts/vendor/reflect-metadata/Reflect.js"></script>
+  <script src="javascripts/vendor/systemjs/dist/system.src.js"></script>
+
+  <script src="systemjs.config.js"></script>
+</head>
+<body>
+  <lobby>Loading...</lobby> 
+<script>
+  System.import('app').catch(function(err){console.error(err)});
+</script>
+</body>
+</html>
