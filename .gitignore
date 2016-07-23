@@ -1,3 +1,4 @@
 node_modules
+public/game/javascripts/
 .DS_Store
 *.log
