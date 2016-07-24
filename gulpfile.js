@@ -66,6 +66,8 @@ gulp.task('vendor',function(){
 gulp.task('watch',function(){
   gulp.watch(gameDev+'**/*.ts',['build-game-ts']);
   gulp.watch(gameDev+'**/*.{html,htm,css}',['build-game-copy']);
+  gulp.watch(lobbyDev+'**/*.ts',['build-lobby-ts']);
+  gulp.watch(lobbyDev+'**/*.{html,htm,css}',['build-lobby-copy']);
 });
 
 gulp.task('default',['watch','build-game-ts','build-game-copy','vendor']);
