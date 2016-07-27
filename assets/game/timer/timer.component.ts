@@ -7,22 +7,23 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
   selector: 'timer',
   template: `
   <div class="timer-container text-center">
-    <div *ngIf="ready!=true">
+    <div *ngIf="ready!=true && winner==null">
       <button class="btn readyBtn" (click)="readyToPlay()">Ready to Play?</button>
     </div>
-    <div *ngIf="ready==true && playersReady<2">
+    <div *ngIf="ready==true && playersReady%2!=0">
       <p class="time-text text-center"> WAITING ON SECOND PLAYER</p>
     </div>
-    <div *ngIf="playersReady>=2 && winner==null">
+    <div *ngIf="playersReady%2==0">
       <p class="time-text text-center">ROUND ENDS IN...</p>
       <p class="clock text-center">{{remaining}}</p>
       <p class="text-center">{{player1Action}}</p>
       <p class="text-center">{{player2Action}}</p>
     </div>
-    <div *ngIf="winner!=null">
+    <div *ngIf="winner!=null && ready!=true">
       <p class="text-center time-text">
         {{winner}}
       </p>
+      <button class="btn readyBtn" (click)="playAgain()">Play Again?</button>
   </div>
   `,
   styles: [`
@@ -74,12 +75,18 @@ export class TimerComponent{
         this.environmentInfo = snap.val().Globals.Environment;
         if (this.playersInfo.player1.currentHitpoints <= 0){
           this.winner = this.playersInfo.player2.playerClass+" IS THE WINNER!";
+          this.firebaseServer.update({Ready:0});
+          this.ready=false;
         }
         if (this.playersInfo.player2.currentHitpoints <= 0){
           this.winner = this.playersInfo.player1.playerClass+" IS THE WINNER!";
+          this.firebaseServer.update({Ready:0});
+          this.ready=false;
         }
         if (this.playersInfo.player1.currentHitpoints <= 0 && this.playersInfo.player2.currentHitpoints <= 0){
           this.winner = this.playersInfo.player1.playerClass+" AND "+this.playersInfo.player2.playerClass+" TIED!"
+          this.firebaseServer.update({Ready:0});
+          this.ready=false;
         };
       });
     this.firebaseClock = af.database.object('/'+this.URL.split('/game/')[1]+"/Timer",{preserveSnapshot:true});
@@ -205,6 +212,30 @@ export class TimerComponent{
     } else {
       this.host = false;
     }
+    this.firebaseServer.update({Ready:this.playersReady+1});
+  }
+
+  playAgain(){
+    this.ready=true;
+    if(this.playersInfo.player1.playerClass=="Highwayman"){
+      this.playersInfo.player1.currentHitpoints = 80;
+    }
+    if(this.playersInfo.player1.playerClass=="Elementalist"){
+      this.playersInfo.player1.currentHitpoints = 50;
+    }
+    if(this.playersInfo.player1.playerClass=="Paragon"){
+      this.playersInfo.player1.currentHitpoints = 100;
+    }
+    if(this.playersInfo.player2.playerClass=="Highwayman"){
+      this.playersInfo.player2.currentHitpoints = 80;
+    }
+    if(this.playersInfo.player2.playerClass=="Elementalist"){
+      this.playersInfo.player2.currentHitpoints = 50;
+    }
+    if(this.playersInfo.player2.playerClass=="Paragon"){
+      this.playersInfo.player2.currentHitpoints = 100;
+    }
+    this.firebaseServer.update({Players:this.playersInfo});
     this.firebaseServer.update({Ready:this.playersReady+1});
   }
 }

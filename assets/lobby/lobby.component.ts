@@ -1,33 +1,16 @@
 import {Component} from '@angular/core';
 import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
 
-import {NavbarComponent} from './navbar/navbar.component';
-import {StatsComponent} from './stats/stats.component';
-import {AnimationComponent} from './animation/animation.component';
-import {EnvironmentComponent} from './environment/environment.component';
-
 
 @Component({
   selector: 'lobby',
   template:`
-  <navbar></navbar>
-  <div class="game-container">
-    <stats></stats>
-    <animation></animation>
-  </div>
-  <div class="env-container">
-    <environment></environment>
-  </div>
+    <p>BLARGH</p>
   `,
-  directives: [NavbarComponent,StatsComponent,AnimationComponent,EnvironmentComponent]
 })
 
-export class GameComponent{
+export class LobbyComponent{
   room: FirebaseObjectObservable<any>;
   URL: string;
 
-  constructor(af:AngularFire){
-    this.URL = window.location.href;
-    this.room = af.database.object('/'+this.URL.split('/game/')[1]);
-  }
 }
