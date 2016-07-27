@@ -13,7 +13,7 @@ import {AngularFire,FirebaseObjectObservable} from 'angularfire2';
     <div *ngIf="ready==true && playersReady%2!=0">
       <p class="time-text text-center"> WAITING ON SECOND PLAYER</p>
     </div>
-    <div *ngIf="playersReady%2==0">
+    <div *ngIf="playersReady%2==0 && playersReady!=0">
       <p class="time-text text-center">ROUND ENDS IN...</p>
       <p class="clock text-center">{{remaining}}</p>
       <p class="text-center">{{player1Action}}</p>
